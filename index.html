@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Think Smart Bootcamp — Hanominds</title>
+<title>Think Smart Bootcamp — Hanominds · Days 1–13</title>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -17,6 +17,9 @@
   --yellow: #ffd166;
   --green: #06d6a0;
   --pink: #ff4da6;
+  --purple: #a855f7;
+  --teal: #14b8a6;
+  --red: #f43f5e;
   --white: #f0f4ff;
   --muted: #8892b0;
   --card: rgba(255,255,255,0.04);
@@ -31,8 +34,6 @@ body {
   min-height: 100vh;
   overflow-x: hidden;
 }
-
-/* STARS BG */
 body::before {
   content:'';
   position:fixed; inset:0;
@@ -40,11 +41,11 @@ body::before {
               radial-gradient(ellipse at 80% 80%, rgba(255,107,43,0.06) 0%, transparent 60%);
   pointer-events:none; z-index:0;
 }
-
+ 
 /* HEADER */
 .header {
   position: sticky; top:0; z-index:100;
-  background: rgba(10,14,42,0.92);
+  background: rgba(10,14,42,0.95);
   backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--border);
   padding: 12px 24px;
@@ -54,455 +55,471 @@ body::before {
 .logo-icon {
   width:36px; height:36px; border-radius:10px;
   background: linear-gradient(135deg, var(--blue), var(--cyan));
-  display:flex; align-items:center; justify-content:center;
-  font-size:18px;
+  display:flex; align-items:center; justify-content:center; font-size:18px;
 }
 .logo-text { font-family:'Syne',sans-serif; font-weight:700; font-size:15px; }
 .logo-sub { font-size:11px; color:var(--muted); }
-.day-tabs { display:flex; gap:8px; margin-left:auto; }
+.day-tabs { display:flex; gap:6px; margin-left:auto; flex-wrap:wrap; }
 .day-tab {
-  padding:8px 20px; border-radius:8px; cursor:pointer;
-  font-family:'Syne',sans-serif; font-size:13px; font-weight:600;
+  padding:6px 14px; border-radius:8px; cursor:pointer;
+  font-family:'Syne',sans-serif; font-size:12px; font-weight:600;
   border:1px solid var(--border); background:transparent;
   color:var(--muted); transition:all 0.25s;
 }
 .day-tab.active { background:var(--blue); border-color:var(--blue); color:#fff; }
+.day-tab.d2.active { background:var(--orange); border-color:var(--orange); }
+.day-tab.d3.active { background:var(--purple); border-color:var(--purple); }
+.day-tab.d4.active { background:var(--teal); border-color:var(--teal); }
+.day-tab.d5.active { background:var(--green); border-color:var(--green); }
+.day-tab.d6.active { background:var(--yellow); border-color:var(--yellow); color:var(--navy); }
+.day-tab.d7.active { background:var(--pink); border-color:var(--pink); }
+.day-tab.d8.active { background:var(--cyan); border-color:var(--cyan); color:var(--navy); }
+.day-tab.d9.active { background:var(--red); border-color:var(--red); }
+.day-tab.d10.active { background:var(--purple); border-color:var(--purple); }
+.day-tab.d11.active { background:var(--orange); border-color:var(--orange); }
+.day-tab.d12.active { background:var(--teal); border-color:var(--teal); }
+.day-tab.d13.active { background:var(--green); border-color:var(--green); }
 .timer-badge {
   margin-left:8px; background:rgba(255,107,43,0.15);
   border:1px solid rgba(255,107,43,0.3);
   color:var(--orange); padding:6px 14px; border-radius:8px;
-  font-size:13px; font-weight:500; font-family:'Syne',sans-serif;
+  font-size:13px; font-weight:500; font-family:'Syne',sans-serif; white-space:nowrap;
 }
-
-/* MAIN LAYOUT */
+ 
+/* LAYOUT */
 .layout { display:flex; min-height:calc(100vh - 61px); position:relative; z-index:1; }
-
+ 
 /* SIDEBAR */
 .sidebar {
   width:240px; flex-shrink:0;
   background: rgba(0,0,0,0.2);
   border-right:1px solid var(--border);
-  padding:20px 0; position:sticky; top:61px;
+  padding:16px 0; position:sticky; top:61px;
   height:calc(100vh - 61px); overflow-y:auto;
 }
-.sidebar-section { padding:8px 16px 4px; font-size:10px; font-weight:600;
-  letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); }
+.sidebar-section {
+  padding:8px 16px 4px; font-size:10px; font-weight:600;
+  letter-spacing:0.1em; text-transform:uppercase; color:var(--muted);
+  margin-top:8px;
+}
 .sidebar-item {
-  padding:10px 20px; cursor:pointer; display:flex; align-items:center; gap:10px;
-  font-size:13px; color:var(--muted); transition:all 0.2s;
+  padding:9px 18px; cursor:pointer; display:flex; align-items:center; gap:10px;
+  font-size:12px; color:var(--muted); transition:all 0.2s;
   border-left:3px solid transparent;
 }
 .sidebar-item:hover { color:var(--white); background:var(--card); }
-.sidebar-item.active { color:var(--white); background:rgba(26,111,255,0.1);
-  border-left-color:var(--blue); }
+.sidebar-item.active { color:var(--white); background:rgba(26,111,255,0.1); border-left-color:var(--blue); }
+.sidebar-item.active.d2i { background:rgba(255,107,43,0.1); border-left-color:var(--orange); }
+.sidebar-item.active.d3i { background:rgba(168,85,247,0.1); border-left-color:var(--purple); }
+.sidebar-item.active.d4i { background:rgba(20,184,166,0.1); border-left-color:var(--teal); }
+.sidebar-item.active.d5i { background:rgba(6,214,160,0.1); border-left-color:var(--green); }
+.sidebar-item.active.d6i { background:rgba(255,209,102,0.1); border-left-color:var(--yellow); }
+.sidebar-item.active.d7i { background:rgba(255,77,166,0.1); border-left-color:var(--pink); }
+.sidebar-item.active.d8i { background:rgba(0,212,255,0.1); border-left-color:var(--cyan); }
+.sidebar-item.active.d9i { background:rgba(244,63,94,0.1); border-left-color:var(--red); }
+.sidebar-item.active.d10i { background:rgba(168,85,247,0.1); border-left-color:var(--purple); }
+.sidebar-item.active.d11i { background:rgba(255,107,43,0.1); border-left-color:var(--orange); }
+.sidebar-item.active.d12i { background:rgba(20,184,166,0.1); border-left-color:var(--teal); }
+.sidebar-item.active.d13i { background:rgba(6,214,160,0.1); border-left-color:var(--green); }
 .sidebar-dot {
-  width:22px; height:22px; border-radius:6px; flex-shrink:0;
+  width:20px; height:20px; border-radius:6px; flex-shrink:0;
   display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:700;
 }
-
+ 
 /* CONTENT */
-.content { flex:1; padding:32px 40px; max-width:900px; }
-
-/* BLOCKS */
+.content { flex:1; padding:32px 40px; max-width:920px; }
 .block { display:none; }
 .block.active { display:block; animation:fadeIn 0.3s ease; }
 @keyframes fadeIn { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:none} }
-
-.block-header { margin-bottom:28px; }
+ 
+/* TAGS */
 .block-tag {
   display:inline-block; padding:4px 12px; border-radius:20px;
-  font-size:11px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase;
-  margin-bottom:12px;
+  font-size:11px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; margin-bottom:12px;
 }
-.tag-day1 { background:rgba(0,212,255,0.12); color:var(--cyan); border:1px solid rgba(0,212,255,0.2); }
-.tag-day2 { background:rgba(255,107,43,0.12); color:var(--orange); border:1px solid rgba(255,107,43,0.2); }
+.tag-d1  { background:rgba(0,212,255,0.12);   color:var(--cyan);   border:1px solid rgba(0,212,255,0.2); }
+.tag-d2  { background:rgba(255,107,43,0.12);  color:var(--orange); border:1px solid rgba(255,107,43,0.2); }
+.tag-d3  { background:rgba(168,85,247,0.12);  color:var(--purple); border:1px solid rgba(168,85,247,0.2); }
+.tag-d4  { background:rgba(20,184,166,0.12);  color:var(--teal);   border:1px solid rgba(20,184,166,0.2); }
+.tag-d5  { background:rgba(6,214,160,0.12);   color:var(--green);  border:1px solid rgba(6,214,160,0.2); }
+.tag-d6  { background:rgba(255,209,102,0.12); color:var(--yellow); border:1px solid rgba(255,209,102,0.2); }
+.tag-d7  { background:rgba(255,77,166,0.12);  color:var(--pink);   border:1px solid rgba(255,77,166,0.2); }
+.tag-d8  { background:rgba(0,212,255,0.12);   color:var(--cyan);   border:1px solid rgba(0,212,255,0.2); }
+.tag-d9  { background:rgba(244,63,94,0.12);   color:var(--red);    border:1px solid rgba(244,63,94,0.2); }
+.tag-d10 { background:rgba(168,85,247,0.12);  color:var(--purple); border:1px solid rgba(168,85,247,0.2); }
+.tag-d11 { background:rgba(255,107,43,0.12);  color:var(--orange); border:1px solid rgba(255,107,43,0.2); }
+.tag-d12 { background:rgba(20,184,166,0.12);  color:var(--teal);   border:1px solid rgba(20,184,166,0.2); }
+.tag-d13 { background:rgba(6,214,160,0.12);   color:var(--green);  border:1px solid rgba(6,214,160,0.2); }
+ 
 .block-title { font-family:'Syne',sans-serif; font-size:28px; font-weight:800; line-height:1.2; }
 .block-subtitle { margin-top:8px; color:var(--muted); font-size:15px; line-height:1.6; }
 .time-pill {
   display:inline-flex; align-items:center; gap:6px;
   background:rgba(255,255,255,0.05); border:1px solid var(--border);
-  border-radius:20px; padding:4px 12px; font-size:12px; color:var(--muted);
-  margin-top:12px;
+  border-radius:20px; padding:4px 12px; font-size:12px; color:var(--muted); margin-top:12px;
 }
-
+ 
 /* HOOK BOX */
 .hook-box {
   background:linear-gradient(135deg, rgba(26,111,255,0.12), rgba(0,212,255,0.06));
   border:1px solid rgba(26,111,255,0.25); border-radius:14px;
-  padding:24px 28px; margin:24px 0; position:relative; overflow:hidden;
+  padding:22px 26px; margin:22px 0; position:relative; overflow:hidden;
 }
 .hook-box::before {
   content:''; position:absolute; top:0; left:0; right:0; height:2px;
   background:linear-gradient(90deg, var(--blue), var(--cyan));
 }
-.hook-label { font-size:10px; font-weight:600; text-transform:uppercase;
-  letter-spacing:0.1em; color:var(--cyan); margin-bottom:10px; }
-.hook-text { font-size:17px; line-height:1.7; font-style:italic; }
+.hook-box.orange-hook { background:linear-gradient(135deg, rgba(255,107,43,0.1), rgba(255,209,102,0.05)); border-color:rgba(255,107,43,0.25); }
+.hook-box.orange-hook::before { background:linear-gradient(90deg, var(--orange), var(--yellow)); }
+.hook-box.purple-hook { background:linear-gradient(135deg, rgba(168,85,247,0.1), rgba(0,212,255,0.05)); border-color:rgba(168,85,247,0.25); }
+.hook-box.purple-hook::before { background:linear-gradient(90deg, var(--purple), var(--cyan)); }
+.hook-box.teal-hook { background:linear-gradient(135deg, rgba(20,184,166,0.1), rgba(0,212,255,0.05)); border-color:rgba(20,184,166,0.25); }
+.hook-box.teal-hook::before { background:linear-gradient(90deg, var(--teal), var(--cyan)); }
+.hook-box.green-hook { background:linear-gradient(135deg, rgba(6,214,160,0.1), rgba(0,212,255,0.05)); border-color:rgba(6,214,160,0.25); }
+.hook-box.green-hook::before { background:linear-gradient(90deg, var(--green), var(--cyan)); }
+.hook-box.yellow-hook { background:linear-gradient(135deg, rgba(255,209,102,0.1), rgba(255,107,43,0.05)); border-color:rgba(255,209,102,0.25); }
+.hook-box.yellow-hook::before { background:linear-gradient(90deg, var(--yellow), var(--orange)); }
+.hook-box.red-hook { background:linear-gradient(135deg, rgba(244,63,94,0.1), rgba(168,85,247,0.05)); border-color:rgba(244,63,94,0.25); }
+.hook-box.red-hook::before { background:linear-gradient(90deg, var(--red), var(--purple)); }
+.hook-label { font-size:10px; font-weight:600; text-transform:uppercase; letter-spacing:0.1em; color:var(--cyan); margin-bottom:10px; }
+.hook-text { font-size:16px; line-height:1.7; font-style:italic; }
 .hook-text strong { color:var(--cyan); font-style:normal; }
-
+ 
 /* CONCEPT CARD */
 .concept-card {
   background:var(--card); border:1px solid var(--border); border-radius:14px;
-  padding:20px 24px; margin:16px 0; transition:border-color 0.2s;
+  padding:18px 22px; margin:14px 0; transition:border-color 0.2s;
 }
 .concept-card:hover { border-color:rgba(255,255,255,0.15); }
-.concept-card h3 { font-family:'Syne',sans-serif; font-size:16px; font-weight:700;
-  margin-bottom:10px; display:flex; align-items:center; gap:10px; }
+.concept-card h3 { font-family:'Syne',sans-serif; font-size:15px; font-weight:700; margin-bottom:8px; display:flex; align-items:center; gap:10px; }
 .concept-card p { color:var(--muted); font-size:14px; line-height:1.7; }
-
-/* ICEBERG ANIMATION */
-#iceberg-demo {
-  background:linear-gradient(180deg, rgba(0,30,80,0.6) 0%, rgba(0,10,40,0.9) 100%);
-  border:1px solid var(--border); border-radius:16px; padding:28px;
-  margin:24px 0; text-align:center; overflow:hidden; position:relative;
-}
-.water-line {
-  border-top: 2px dashed rgba(0,212,255,0.5); margin:16px 0;
-  position:relative;
-}
-.water-line::after {
-  content:'SURFACE — What users see'; position:absolute; right:0; top:-10px;
-  font-size:10px; color:var(--cyan); background:var(--navy2); padding:0 8px;
-}
-.iceberg-visible {
-  background:linear-gradient(135deg, #1a6fff, #00d4ff);
-  border-radius:12px 12px 4px 4px; padding:16px 24px;
-  font-weight:700; font-family:'Syne',sans-serif; font-size:15px;
-  display:inline-block; min-width:200px; position:relative; z-index:2;
-  animation: float 3s ease-in-out infinite;
-}
-@keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
-.iceberg-hidden {
-  background:linear-gradient(135deg, rgba(26,111,255,0.3), rgba(0,212,255,0.15));
-  border:1px solid rgba(26,111,255,0.3); border-radius:4px 4px 20px 20px;
-  padding:20px 24px; margin-top:0; min-width:320px; display:inline-block;
-  opacity:0; transform:translateY(-10px);
-  transition: all 0.6s ease;
-}
-.iceberg-hidden.show { opacity:1; transform:translateY(0); }
-.iceberg-hidden ul { list-style:none; text-align:left; }
-.iceberg-hidden ul li { padding:5px 0; font-size:13px; color:var(--muted); display:flex; align-items:center; gap:8px; }
-.iceberg-hidden ul li::before { content:'⚡'; font-size:12px; }
-.reveal-btn {
-  background:transparent; border:1px solid var(--cyan); color:var(--cyan);
-  padding:10px 24px; border-radius:8px; cursor:pointer; font-size:13px;
-  font-family:'Syne',sans-serif; font-weight:600; margin-top:16px;
-  transition:all 0.2s;
-}
-.reveal-btn:hover { background:var(--cyan); color:var(--navy); }
-
-/* ATM ANIMATION */
-#atm-demo {
-  background:rgba(0,0,0,0.3); border:1px solid var(--border); border-radius:16px;
-  padding:28px; margin:24px 0;
-}
-.atm-flow { display:flex; align-items:center; gap:0; flex-wrap:wrap; justify-content:center; }
-.atm-step {
-  background:var(--card); border:1px solid var(--border); border-radius:10px;
-  padding:14px 16px; text-align:center; min-width:100px;
-  font-size:12px; line-height:1.5; opacity:0.3;
-  transition:all 0.4s; position:relative;
-}
-.atm-step.lit {
-  opacity:1; border-color:var(--green); background:rgba(6,214,160,0.08);
-  transform:scale(1.05);
-}
-.atm-step .step-icon { font-size:20px; margin-bottom:6px; display:block; }
-.atm-step .step-label { font-weight:600; font-family:'Syne',sans-serif; font-size:11px; color:var(--white); }
-.atm-step .step-desc { color:var(--muted); font-size:10px; margin-top:3px; }
-.atm-arrow {
-  color:var(--muted); font-size:16px; margin:0 4px; flex-shrink:0;
-  transition:color 0.4s;
-}
-.atm-arrow.lit { color:var(--green); }
-.atm-progress { height:3px; background:var(--border); border-radius:2px; margin:16px 0 20px; overflow:hidden; }
-.atm-progress-bar { height:100%; background:linear-gradient(90deg, var(--green), var(--cyan));
-  width:0%; transition:width 0.4s ease; border-radius:2px; }
-.run-btn {
-  background:linear-gradient(135deg, var(--blue), var(--blue2));
-  border:none; color:#fff; padding:11px 28px; border-radius:9px;
-  cursor:pointer; font-family:'Syne',sans-serif; font-weight:600; font-size:13px;
-  transition:all 0.2s; display:block; margin:0 auto;
-}
-.run-btn:hover { transform:translateY(-1px); box-shadow:0 6px 20px rgba(26,111,255,0.3); }
-.run-btn:disabled { opacity:0.5; cursor:default; transform:none; }
-
-/* INTERNET ANIMATION */
-#internet-demo {
-  background:rgba(0,0,0,0.3); border:1px solid var(--border); border-radius:16px;
-  padding:28px; margin:24px 0;
-}
-.packet-track { position:relative; height:80px; background:rgba(255,255,255,0.02);
-  border-radius:10px; overflow:hidden; border:1px solid var(--border); margin:16px 0; }
-.packet-label { position:absolute; left:12px; top:50%; transform:translateY(-50%);
-  font-size:11px; color:var(--muted); }
-.packet-label-right { position:absolute; right:12px; top:50%; transform:translateY(-50%);
-  font-size:11px; color:var(--muted); }
-.packet {
-  position:absolute; top:50%; transform:translateY(-50%);
-  width:36px; height:36px; border-radius:8px;
-  background:linear-gradient(135deg, var(--blue), var(--cyan));
-  display:flex; align-items:center; justify-content:center;
-  font-size:11px; font-weight:700; color:#fff; font-family:'Syne',sans-serif;
-  left: -40px;
-  transition: none;
-}
-.packet.moving {
-  animation: packetMove 1.8s ease-in-out forwards;
-}
-@keyframes packetMove {
-  0%{left:-40px;} 100%{left:calc(100% + 10px);}
-}
-.server-node {
-  width:50px; height:50px; border-radius:12px;
-  background:rgba(255,209,102,0.12); border:1px solid rgba(255,209,102,0.3);
-  display:flex; flex-direction:column; align-items:center; justify-content:center;
-  font-size:20px;
-}
-.nodes-row { display:flex; align-items:center; justify-content:space-between;
-  gap:12px; margin:16px 0; }
-.node-label { font-size:10px; color:var(--muted); text-align:center; margin-top:4px; }
-.node-wrap { display:flex; flex-direction:column; align-items:center; }
-.connector-line {
-  flex:1; height:2px; background:var(--border); border-radius:1px; position:relative; overflow:hidden;
-}
-.connector-line::after {
-  content:''; position:absolute; top:0; left:-100%; width:100%; height:100%;
-  background:linear-gradient(90deg, transparent, var(--cyan), transparent);
-  animation:lineFlow 2s linear infinite;
-}
-@keyframes lineFlow { to{left:100%;} }
-
-/* COMPANY TIMELINE */
-.timeline { position:relative; padding-left:32px; margin:20px 0; }
-.timeline::before { content:''; position:absolute; left:10px; top:0; bottom:0;
-  width:2px; background:linear-gradient(180deg, var(--orange), transparent); }
-.tl-item { position:relative; margin-bottom:24px; }
-.tl-dot { position:absolute; left:-27px; width:16px; height:16px; border-radius:50%;
-  background:var(--orange); border:3px solid var(--navy); top:3px; }
-.tl-year { font-size:11px; color:var(--orange); font-weight:600; margin-bottom:4px; font-family:'Syne',sans-serif; }
-.tl-text { font-size:14px; color:var(--muted); line-height:1.6; }
-.tl-text strong { color:var(--white); }
-
-/* CEO THOUGHT BUBBLE */
+ 
+/* THOUGHT BUBBLE */
 .thought-bubble {
   background:rgba(255,107,43,0.08); border:1px solid rgba(255,107,43,0.2);
-  border-radius:14px; padding:20px 24px; margin:20px 0; position:relative;
+  border-radius:14px; padding:18px 22px; margin:18px 0; position:relative;
 }
-.thought-bubble::before {
-  content:'💭 CEO INSIGHT'; font-size:10px; font-weight:600;
-  letter-spacing:0.1em; color:var(--orange); display:block; margin-bottom:10px;
-}
-.thought-bubble p { font-size:16px; line-height:1.7; font-style:italic; }
+.thought-bubble::before { content:'💭 INSIGHT'; font-size:10px; font-weight:600; letter-spacing:0.1em; color:var(--orange); display:block; margin-bottom:8px; }
+.thought-bubble p { font-size:15px; line-height:1.7; font-style:italic; }
 .thought-bubble strong { color:var(--orange); font-style:normal; }
-
-/* COMPARE TABLE */
-.compare-table { width:100%; border-collapse:collapse; margin:20px 0; font-size:13px; }
-.compare-table th {
-  background:rgba(255,255,255,0.05); padding:12px 16px;
-  text-align:left; font-family:'Syne',sans-serif; font-size:12px;
-  font-weight:700; letter-spacing:0.05em; border-bottom:1px solid var(--border);
+ 
+/* SCRIPT BOX */
+.script-box {
+  background:rgba(0,0,0,0.35); border:1px solid var(--border);
+  border-radius:14px; padding:24px 28px; margin:20px 0; position:relative;
 }
-.compare-table td {
-  padding:11px 16px; border-bottom:1px solid rgba(255,255,255,0.04);
-  color:var(--muted); vertical-align:top;
+.script-box::before { content:'🎙️ TRAINER SCRIPT'; font-size:10px; font-weight:600; letter-spacing:0.1em; color:var(--muted); display:block; margin-bottom:16px; }
+.script-line {
+  font-size:14px; line-height:2; color:var(--muted); padding:2px 0;
 }
-.compare-table td:first-child { color:var(--white); font-weight:500; }
-.compare-table tr:hover td { background:rgba(255,255,255,0.02); }
-.badge-uber { background:rgba(0,212,255,0.1); color:var(--cyan); padding:2px 8px; border-radius:4px; font-size:11px; }
-.badge-ola { background:rgba(6,214,160,0.1); color:var(--green); padding:2px 8px; border-radius:4px; font-size:11px; }
-
-/* 5Q FRAMEWORK */
-.five-q { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:20px 0; }
-.q-card {
+.script-line strong { color:var(--white); }
+.script-line.question { color:var(--cyan); font-style:italic; }
+.script-line.answer { color:var(--green); padding-left:16px; }
+.script-line.emphasis { color:var(--white); font-weight:600; }
+ 
+/* 5 PART SYSTEM */
+.five-part { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin:18px 0; }
+.part-card {
   background:var(--card); border:1px solid var(--border); border-radius:12px;
-  padding:16px 18px; transition:all 0.25s; cursor:default;
+  padding:14px 16px; transition:all 0.25s;
 }
-.q-card:hover { border-color:rgba(26,111,255,0.4); background:rgba(26,111,255,0.05); transform:translateY(-2px); }
-.q-num { font-family:'Syne',sans-serif; font-size:22px; font-weight:800; color:rgba(26,111,255,0.4); }
-.q-text { font-size:14px; font-weight:600; margin:4px 0; }
-.q-hint { font-size:12px; color:var(--muted); }
-
-/* ZOMATO FLOW */
-#zomato-demo { background:rgba(0,0,0,0.3); border:1px solid var(--border); border-radius:16px; padding:24px; margin:20px 0; }
-.z-steps { display:flex; flex-direction:column; gap:10px; }
-.z-step {
-  display:flex; align-items:flex-start; gap:14px; padding:12px 16px;
-  border-radius:10px; border:1px solid transparent; opacity:0.35; transition:all 0.35s;
-}
-.z-step.active-step { opacity:1; border-color:rgba(255,107,43,0.3); background:rgba(255,107,43,0.06); }
-.z-step-num {
-  width:28px; height:28px; border-radius:8px; background:rgba(255,107,43,0.15);
-  color:var(--orange); font-weight:700; font-size:13px; display:flex; align-items:center;
-  justify-content:center; flex-shrink:0; font-family:'Syne',sans-serif;
-}
-.z-step-title { font-weight:600; font-size:14px; margin-bottom:3px; }
-.z-step-desc { font-size:12px; color:var(--muted); }
-
+.part-card:hover { transform:translateY(-2px); border-color:rgba(255,255,255,0.15); }
+.part-num { font-family:'Syne',sans-serif; font-size:20px; font-weight:800; opacity:0.3; }
+.part-title { font-size:14px; font-weight:600; margin:3px 0; }
+.part-desc { font-size:12px; color:var(--muted); }
+ 
 /* ACTIVITY BOX */
 .activity-box {
   background:linear-gradient(135deg, rgba(255,209,102,0.08), rgba(255,107,43,0.05));
-  border:1px solid rgba(255,209,102,0.2); border-radius:14px; padding:22px 26px; margin:24px 0;
+  border:1px solid rgba(255,209,102,0.2); border-radius:14px; padding:20px 24px; margin:20px 0;
 }
-.activity-label { font-size:10px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase;
-  color:var(--yellow); margin-bottom:10px; display:flex; align-items:center; gap:8px; }
-.activity-label::before { content:''; width:8px; height:8px; background:var(--yellow); border-radius:50%; display:inline-block; }
-.activity-q { font-size:16px; font-weight:600; margin-bottom:8px; }
+.activity-box.purple-act { background:linear-gradient(135deg, rgba(168,85,247,0.08), rgba(0,212,255,0.04)); border-color:rgba(168,85,247,0.2); }
+.activity-box.teal-act { background:linear-gradient(135deg, rgba(20,184,166,0.08), rgba(0,212,255,0.04)); border-color:rgba(20,184,166,0.2); }
+.activity-box.green-act { background:linear-gradient(135deg, rgba(6,214,160,0.08), rgba(0,212,255,0.04)); border-color:rgba(6,214,160,0.2); }
+.activity-box.red-act { background:linear-gradient(135deg, rgba(244,63,94,0.08), rgba(168,85,247,0.04)); border-color:rgba(244,63,94,0.2); }
+.activity-label {
+  font-size:10px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase;
+  color:var(--yellow); margin-bottom:10px; display:flex; align-items:center; gap:8px;
+}
+.activity-label::before { content:''; width:7px; height:7px; background:var(--yellow); border-radius:50%; display:inline-block; }
+.activity-label.purple-lbl { color:var(--purple); }
+.activity-label.purple-lbl::before { background:var(--purple); }
+.activity-label.teal-lbl { color:var(--teal); }
+.activity-label.teal-lbl::before { background:var(--teal); }
+.activity-label.green-lbl { color:var(--green); }
+.activity-label.green-lbl::before { background:var(--green); }
+.activity-label.red-lbl { color:var(--red); }
+.activity-label.red-lbl::before { background:var(--red); }
+.activity-q { font-size:15px; font-weight:600; margin-bottom:8px; }
 .activity-hint { font-size:13px; color:var(--muted); line-height:1.6; }
-
-/* NAV BOTTOM */
-.block-nav { display:flex; justify-content:space-between; align-items:center; margin-top:40px; padding-top:24px; border-top:1px solid var(--border); }
-.nav-pill {
-  display:flex; align-items:center; gap:8px; padding:10px 20px; border-radius:10px;
-  border:1px solid var(--border); cursor:pointer; background:transparent;
-  color:var(--muted); font-size:13px; font-family:'Syne',sans-serif; font-weight:600;
-  transition:all 0.2s;
+ 
+/* TAKEAWAY BOX */
+.takeaway-box {
+  background:rgba(6,214,160,0.05); border:1px solid rgba(6,214,160,0.2);
+  border-radius:12px; padding:18px 22px; margin:18px 0;
 }
+.takeaway-label { font-size:11px; font-weight:600; color:var(--green); margin-bottom:10px; text-transform:uppercase; letter-spacing:0.08em; }
+.takeaway-item { font-size:13px; color:var(--muted); padding:4px 0; display:flex; gap:10px; line-height:1.5; }
+.takeaway-item::before { content:'✓'; color:var(--green); flex-shrink:0; }
+ 
+/* HW BOX */
+.hw-box {
+  background:rgba(255,209,102,0.05); border:1px solid rgba(255,209,102,0.15);
+  border-radius:12px; padding:16px 20px; margin:16px 0;
+}
+.hw-label { font-size:10px; font-weight:600; color:var(--yellow); margin-bottom:8px; text-transform:uppercase; letter-spacing:0.08em; }
+.hw-item { font-size:13px; color:var(--muted); padding:3px 0; display:flex; gap:10px; }
+.hw-item::before { content:'📌'; flex-shrink:0; font-size:11px; }
+ 
+/* CONNECT BOX */
+.connect-box {
+  background:rgba(26,111,255,0.05); border:1px solid rgba(26,111,255,0.2);
+  border-radius:12px; padding:16px 20px; margin:16px 0;
+}
+.connect-label { font-size:10px; font-weight:600; color:var(--cyan); margin-bottom:8px; text-transform:uppercase; letter-spacing:0.08em; }
+.connect-text { font-size:13px; color:var(--muted); line-height:1.6; }
+ 
+/* COMPARE TABLE */
+.compare-table { width:100%; border-collapse:collapse; margin:18px 0; font-size:13px; }
+.compare-table th { background:rgba(255,255,255,0.05); padding:11px 14px; text-align:left; font-family:'Syne',sans-serif; font-size:11px; font-weight:700; letter-spacing:0.05em; border-bottom:1px solid var(--border); }
+.compare-table td { padding:10px 14px; border-bottom:1px solid rgba(255,255,255,0.04); color:var(--muted); }
+.compare-table td:first-child { color:var(--white); font-weight:500; }
+.compare-table tr:hover td { background:rgba(255,255,255,0.02); }
+ 
+/* TIMELINE */
+.timeline { position:relative; padding-left:30px; margin:18px 0; }
+.timeline::before { content:''; position:absolute; left:8px; top:0; bottom:0; width:2px; background:linear-gradient(180deg, var(--orange), transparent); }
+.tl-item { position:relative; margin-bottom:20px; }
+.tl-dot { position:absolute; left:-25px; width:14px; height:14px; border-radius:50%; background:var(--orange); border:3px solid var(--navy); top:3px; }
+.tl-year { font-size:11px; color:var(--orange); font-weight:600; margin-bottom:3px; font-family:'Syne',sans-serif; }
+.tl-text { font-size:13px; color:var(--muted); line-height:1.6; }
+.tl-text strong { color:var(--white); }
+ 
+/* ICEBERG */
+#iceberg-demo { background:linear-gradient(180deg, rgba(0,30,80,0.6) 0%, rgba(0,10,40,0.9) 100%); border:1px solid var(--border); border-radius:16px; padding:24px; margin:20px 0; text-align:center; overflow:hidden; }
+.water-line { border-top: 2px dashed rgba(0,212,255,0.5); margin:16px 0; position:relative; }
+.water-line::after { content:'SURFACE — What users see'; position:absolute; right:0; top:-10px; font-size:10px; color:var(--cyan); background:var(--navy2); padding:0 8px; }
+.iceberg-visible { background:linear-gradient(135deg,#1a6fff,#00d4ff); border-radius:12px 12px 4px 4px; padding:14px 22px; font-weight:700; font-family:'Syne',sans-serif; font-size:14px; display:inline-block; min-width:180px; animation: float 3s ease-in-out infinite; }
+@keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
+.iceberg-hidden { background:linear-gradient(135deg, rgba(26,111,255,0.3), rgba(0,212,255,0.15)); border:1px solid rgba(26,111,255,0.3); border-radius:4px 4px 20px 20px; padding:18px 22px; margin-top:0; min-width:280px; display:inline-block; opacity:0; transform:translateY(-10px); transition: all 0.6s ease; }
+.iceberg-hidden.show { opacity:1; transform:translateY(0); }
+.iceberg-hidden ul { list-style:none; text-align:left; }
+.iceberg-hidden ul li { padding:4px 0; font-size:13px; color:var(--muted); display:flex; align-items:center; gap:8px; }
+.iceberg-hidden ul li::before { content:'⚡'; font-size:11px; }
+.reveal-btn { background:transparent; border:1px solid var(--cyan); color:var(--cyan); padding:9px 22px; border-radius:8px; cursor:pointer; font-size:12px; font-family:'Syne',sans-serif; font-weight:600; margin-top:14px; transition:all 0.2s; }
+.reveal-btn:hover { background:var(--cyan); color:var(--navy); }
+ 
+/* ATM */
+#atm-demo { background:rgba(0,0,0,0.3); border:1px solid var(--border); border-radius:16px; padding:24px; margin:20px 0; }
+.atm-flow { display:flex; align-items:center; gap:0; flex-wrap:wrap; justify-content:center; }
+.atm-step { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:12px 14px; text-align:center; min-width:90px; font-size:11px; line-height:1.5; opacity:0.3; transition:all 0.4s; }
+.atm-step.lit { opacity:1; border-color:var(--green); background:rgba(6,214,160,0.08); transform:scale(1.05); }
+.atm-step .step-icon { font-size:18px; margin-bottom:5px; display:block; }
+.atm-step .step-label { font-weight:600; font-family:'Syne',sans-serif; font-size:10px; color:var(--white); }
+.atm-step .step-desc { color:var(--muted); font-size:9px; margin-top:2px; }
+.atm-arrow { color:var(--muted); font-size:14px; margin:0 3px; flex-shrink:0; transition:color 0.4s; }
+.atm-arrow.lit { color:var(--green); }
+.atm-progress { height:3px; background:var(--border); border-radius:2px; margin:14px 0 18px; overflow:hidden; }
+.atm-progress-bar { height:100%; background:linear-gradient(90deg, var(--green), var(--cyan)); width:0%; transition:width 0.4s ease; border-radius:2px; }
+ 
+/* INTERNET */
+#internet-demo { background:rgba(0,0,0,0.3); border:1px solid var(--border); border-radius:16px; padding:24px; margin:20px 0; }
+.packet-track { position:relative; height:70px; background:rgba(255,255,255,0.02); border-radius:10px; overflow:hidden; border:1px solid var(--border); margin:14px 0; }
+.packet-label { position:absolute; left:10px; top:50%; transform:translateY(-50%); font-size:10px; color:var(--muted); }
+.packet-label-right { position:absolute; right:10px; top:50%; transform:translateY(-50%); font-size:10px; color:var(--muted); }
+.packet { position:absolute; top:50%; transform:translateY(-50%); width:32px; height:32px; border-radius:8px; background:linear-gradient(135deg, var(--blue), var(--cyan)); display:flex; align-items:center; justify-content:center; font-size:10px; font-weight:700; color:#fff; left: -40px; }
+.packet.moving { animation: packetMove 1.8s ease-in-out forwards; }
+@keyframes packetMove { 0%{left:-40px;} 100%{left:calc(100% + 10px);} }
+.server-node { width:44px; height:44px; border-radius:10px; background:rgba(255,209,102,0.12); border:1px solid rgba(255,209,102,0.3); display:flex; align-items:center; justify-content:center; font-size:18px; }
+.nodes-row { display:flex; align-items:center; justify-content:space-between; gap:8px; margin:14px 0; }
+.node-label { font-size:9px; color:var(--muted); text-align:center; margin-top:4px; }
+.node-wrap { display:flex; flex-direction:column; align-items:center; }
+.connector-line { flex:1; height:2px; background:var(--border); border-radius:1px; position:relative; overflow:hidden; }
+.connector-line::after { content:''; position:absolute; top:0; left:-100%; width:100%; height:100%; background:linear-gradient(90deg, transparent, var(--cyan), transparent); animation:lineFlow 2s linear infinite; }
+@keyframes lineFlow { to{left:100%;} }
+ 
+/* ZOMATO FLOW */
+.z-steps { display:flex; flex-direction:column; gap:8px; }
+.z-step { display:flex; align-items:flex-start; gap:12px; padding:11px 14px; border-radius:10px; border:1px solid transparent; opacity:0.35; transition:all 0.35s; }
+.z-step.active-step { opacity:1; border-color:rgba(255,107,43,0.3); background:rgba(255,107,43,0.06); }
+.z-step-num { width:26px; height:26px; border-radius:7px; background:rgba(255,107,43,0.15); color:var(--orange); font-weight:700; font-size:12px; display:flex; align-items:center; justify-content:center; flex-shrink:0; font-family:'Syne',sans-serif; }
+.z-step-title { font-weight:600; font-size:13px; margin-bottom:2px; }
+.z-step-desc { font-size:11px; color:var(--muted); }
+ 
+/* 5Q */
+.five-q { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin:18px 0; }
+.q-card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:14px 16px; transition:all 0.25s; }
+.q-card:hover { border-color:rgba(26,111,255,0.4); background:rgba(26,111,255,0.05); transform:translateY(-2px); }
+.q-num { font-family:'Syne',sans-serif; font-size:20px; font-weight:800; color:rgba(26,111,255,0.4); }
+.q-text { font-size:13px; font-weight:600; margin:3px 0; }
+.q-hint { font-size:11px; color:var(--muted); }
+ 
+/* WORKFLOW STEPS */
+.wf-steps { display:flex; flex-direction:column; gap:8px; margin:16px 0; }
+.wf-step { display:flex; gap:14px; align-items:flex-start; padding:12px 16px; background:var(--card); border:1px solid var(--border); border-radius:10px; }
+.wf-num { font-family:'Syne',sans-serif; font-size:18px; font-weight:800; min-width:28px; }
+.wf-body .wf-title { font-size:13px; font-weight:600; margin-bottom:2px; }
+.wf-body .wf-desc { font-size:12px; color:var(--muted); }
+ 
+/* RUN BUTTON */
+.run-btn { background:linear-gradient(135deg, var(--blue), var(--blue2)); border:none; color:#fff; padding:10px 26px; border-radius:9px; cursor:pointer; font-family:'Syne',sans-serif; font-weight:600; font-size:12px; transition:all 0.2s; display:block; margin:14px auto 0; }
+.run-btn:hover { transform:translateY(-1px); box-shadow:0 6px 20px rgba(26,111,255,0.3); }
+.run-btn:disabled { opacity:0.5; cursor:default; transform:none; }
+.run-btn.orange-btn { background:linear-gradient(135deg, var(--orange), var(--orange2)); }
+.run-btn.purple-btn { background:linear-gradient(135deg, var(--purple), #7c3aed); }
+.run-btn.teal-btn { background:linear-gradient(135deg, var(--teal), #0d9488); }
+ 
+/* NAV */
+.block-nav { display:flex; justify-content:space-between; align-items:center; margin-top:36px; padding-top:22px; border-top:1px solid var(--border); }
+.nav-pill { display:flex; align-items:center; gap:8px; padding:9px 18px; border-radius:10px; border:1px solid var(--border); cursor:pointer; background:transparent; color:var(--muted); font-size:12px; font-family:'Syne',sans-serif; font-weight:600; transition:all 0.2s; }
 .nav-pill:hover { border-color:rgba(26,111,255,0.5); color:var(--white); background:rgba(26,111,255,0.08); }
 .nav-pill.next { background:var(--blue); border-color:var(--blue); color:#fff; }
 .nav-pill.next:hover { background:var(--blue2); }
-.progress-text { font-size:12px; color:var(--muted); }
-
+.nav-pill.next.orange-next { background:var(--orange); border-color:var(--orange); }
+.nav-pill.next.purple-next { background:var(--purple); border-color:var(--purple); }
+.nav-pill.next.teal-next { background:var(--teal); border-color:var(--teal); }
+.nav-pill.next.green-next { background:var(--green); border-color:var(--green); color:var(--navy); }
+.nav-pill.next.yellow-next { background:var(--yellow); border-color:var(--yellow); color:var(--navy); }
+.nav-pill.next.pink-next { background:var(--pink); border-color:var(--pink); }
+.nav-pill.next.cyan-next { background:var(--cyan); border-color:var(--cyan); color:var(--navy); }
+.nav-pill.next.red-next { background:var(--red); border-color:var(--red); }
+.progress-text { font-size:11px; color:var(--muted); }
+ 
 /* SCROLLBAR */
 ::-webkit-scrollbar { width:5px; }
 ::-webkit-scrollbar-track { background:transparent; }
 ::-webkit-scrollbar-thumb { background:rgba(255,255,255,0.1); border-radius:3px; }
-
+ 
 /* RESPONSIVE */
 @media(max-width:768px) {
-  .sidebar{display:none;} .content{padding:20px;} .five-q{grid-template-columns:1fr;}
-  .block-title{font-size:22px;} .atm-flow{gap:4px;}
+  .sidebar{display:none;} .content{padding:18px;} .five-q{grid-template-columns:1fr;} .five-part{grid-template-columns:1fr;}
+  .block-title{font-size:22px;} .atm-flow{gap:4px;} .day-tabs{display:none;}
 }
 </style>
 </head>
 <body>
-
+ 
 <!-- HEADER -->
 <header class="header">
   <div class="logo">
     <div class="logo-icon">🧠</div>
     <div>
       <div class="logo-text">Hanominds</div>
-      <div class="logo-sub">Think Smart Bootcamp</div>
+      <div class="logo-sub">Think Smart Bootcamp · Days 1–13</div>
     </div>
   </div>
   <div class="day-tabs">
-    <button class="day-tab active" onclick="switchDay(1)">Day 1</button>
-    <button class="day-tab" onclick="switchDay(2)">Day 2</button>
+    <button class="day-tab active"    onclick="gotoDay(1)">D1</button>
+    <button class="day-tab d2"        onclick="gotoDay(2)">D2</button>
+    <button class="day-tab d3"        onclick="gotoDay(3)">D3</button>
+    <button class="day-tab d4"        onclick="gotoDay(4)">D4</button>
+    <button class="day-tab d5"        onclick="gotoDay(5)">D5</button>
+    <button class="day-tab d6"        onclick="gotoDay(6)">D6</button>
+    <button class="day-tab d7"        onclick="gotoDay(7)">D7</button>
+    <button class="day-tab d8"        onclick="gotoDay(8)">D8</button>
+    <button class="day-tab d9"        onclick="gotoDay(9)">D9</button>
+    <button class="day-tab d10"       onclick="gotoDay(10)">D10</button>
+    <button class="day-tab d11"       onclick="gotoDay(11)">D11</button>
+    <button class="day-tab d12"       onclick="gotoDay(12)">D12</button>
+    <button class="day-tab d13"       onclick="gotoDay(13)">D13</button>
   </div>
   <div class="timer-badge" id="timer">⏱ 2:00:00</div>
 </header>
-
+ 
 <div class="layout">
-
+ 
 <!-- SIDEBAR -->
-<nav class="sidebar" id="sidebar">
+<nav class="sidebar">
   <div class="sidebar-section">Day 1 — How Things Work</div>
-  <div class="sidebar-item active" onclick="showBlock('opening')" id="nav-opening">
-    <div class="sidebar-dot" style="background:rgba(0,212,255,0.15);color:var(--cyan)">🎯</div>Opening Hook
-  </div>
-  <div class="sidebar-item" onclick="showBlock('iceberg')" id="nav-iceberg">
-    <div class="sidebar-dot" style="background:rgba(26,111,255,0.15);color:var(--blue)">🧊</div>Iceberg Concept
-  </div>
-  <div class="sidebar-item" onclick="showBlock('atm')" id="nav-atm">
-    <div class="sidebar-dot" style="background:rgba(6,214,160,0.15);color:var(--green)">🏧</div>ATM — How it Works
-  </div>
-  <div class="sidebar-item" onclick="showBlock('internet')" id="nav-internet">
-    <div class="sidebar-dot" style="background:rgba(255,209,102,0.15);color:var(--yellow)">🌐</div>What is Internet?
-  </div>
-  <div class="sidebar-item" onclick="showBlock('fiveq')" id="nav-fiveq">
-    <div class="sidebar-dot" style="background:rgba(255,107,43,0.15);color:var(--orange)">❓</div>5 Questions Framework
-  </div>
-  <div class="sidebar-item" onclick="showBlock('computer')" id="nav-computer">
-    <div class="sidebar-dot" style="background:rgba(255,77,166,0.15);color:var(--pink)">💻</div>Inside a Computer
-  </div>
-  <div class="sidebar-item" onclick="showBlock('d1activity')" id="nav-d1activity">
-    <div class="sidebar-dot" style="background:rgba(255,209,102,0.15);color:var(--yellow)">✍️</div>Activity
-  </div>
-
-  <div class="sidebar-section" style="margin-top:16px;">Day 2 — How Companies Work</div>
-  <div class="sidebar-item" onclick="showBlock('company-intro')" id="nav-company-intro">
-    <div class="sidebar-dot" style="background:rgba(255,107,43,0.15);color:var(--orange)">🏢</div>What is a Company?
-  </div>
-  <div class="sidebar-item" onclick="showBlock('zomato')" id="nav-zomato">
-    <div class="sidebar-dot" style="background:rgba(255,107,43,0.15);color:var(--orange)">🍕</div>Zomato Story
-  </div>
-  <div class="sidebar-item" onclick="showBlock('ola')" id="nav-ola">
-    <div class="sidebar-dot" style="background:rgba(6,214,160,0.15);color:var(--green)">🚕</div>Ola Story
-  </div>
-  <div class="sidebar-item" onclick="showBlock('uber')" id="nav-uber">
-    <div class="sidebar-dot" style="background:rgba(0,212,255,0.15);color:var(--cyan)">🌍</div>Uber vs Ola
-  </div>
-  <div class="sidebar-item" onclick="showBlock('ceomind')" id="nav-ceomind">
-    <div class="sidebar-dot" style="background:rgba(255,209,102,0.15);color:var(--yellow)">🧠</div>CEO Mindset
-  </div>
-  <div class="sidebar-item" onclick="showBlock('d2activity')" id="nav-d2activity">
-    <div class="sidebar-dot" style="background:rgba(255,107,43,0.15);color:var(--orange)">✍️</div>Activity
-  </div>
+  <div class="sidebar-item active" id="nav-opening"      onclick="showBlock('opening')"><div class="sidebar-dot" style="background:rgba(0,212,255,0.15);color:var(--cyan)">🎯</div>Opening Hook</div>
+  <div class="sidebar-item"       id="nav-iceberg"       onclick="showBlock('iceberg')"><div class="sidebar-dot" style="background:rgba(26,111,255,0.15);color:var(--blue)">🧊</div>Iceberg Concept</div>
+  <div class="sidebar-item"       id="nav-atm"           onclick="showBlock('atm')"><div class="sidebar-dot" style="background:rgba(6,214,160,0.15);color:var(--green)">🏧</div>ATM — How it Works</div>
+  <div class="sidebar-item"       id="nav-internet"      onclick="showBlock('internet')"><div class="sidebar-dot" style="background:rgba(255,209,102,0.15);color:var(--yellow)">🌐</div>What is Internet?</div>
+  <div class="sidebar-item"       id="nav-fiveq"         onclick="showBlock('fiveq')"><div class="sidebar-dot" style="background:rgba(255,107,43,0.15);color:var(--orange)">❓</div>5 Questions Framework</div>
+  <div class="sidebar-item"       id="nav-computer"      onclick="showBlock('computer')"><div class="sidebar-dot" style="background:rgba(255,77,166,0.15);color:var(--pink)">💻</div>Inside a Computer</div>
+  <div class="sidebar-item"       id="nav-d1act"         onclick="showBlock('d1act')"><div class="sidebar-dot" style="background:rgba(255,209,102,0.15);color:var(--yellow)">✍️</div>Day 1 Activity</div>
+ 
+  <div class="sidebar-section">Day 2 — How Companies Work</div>
+  <div class="sidebar-item" id="nav-compintro"   onclick="showBlock('compintro')"><div class="sidebar-dot" style="background:rgba(255,107,43,0.15);color:var(--orange)">🏢</div>What is a Company?</div>
+  <div class="sidebar-item" id="nav-zomato"      onclick="showBlock('zomato')"><div class="sidebar-dot" style="background:rgba(255,107,43,0.15);color:var(--orange)">🍕</div>Zomato Story</div>
+  <div class="sidebar-item" id="nav-ola"         onclick="showBlock('ola')"><div class="sidebar-dot" style="background:rgba(6,214,160,0.15);color:var(--green)">🚕</div>Ola Story</div>
+  <div class="sidebar-item" id="nav-uber"        onclick="showBlock('uber')"><div class="sidebar-dot" style="background:rgba(0,212,255,0.15);color:var(--cyan)">🌍</div>Uber vs Ola</div>
+  <div class="sidebar-item" id="nav-ceomind"     onclick="showBlock('ceomind')"><div class="sidebar-dot" style="background:rgba(255,209,102,0.15);color:var(--yellow)">🧠</div>CEO Mindset</div>
+  <div class="sidebar-item" id="nav-d2act"       onclick="showBlock('d2act')"><div class="sidebar-dot" style="background:rgba(255,107,43,0.15);color:var(--orange)">✍️</div>Day 2 Activity</div>
+ 
+  <div class="sidebar-section">Day 3 — How Apps Work</div>
+  <div class="sidebar-item" id="nav-d3"   onclick="showBlock('d3')"><div class="sidebar-dot" style="background:rgba(168,85,247,0.15);color:var(--purple)">📱</div>App as a System</div>
+ 
+  <div class="sidebar-section">Day 4 — Step-by-Step Thinking</div>
+  <div class="sidebar-item" id="nav-d4"   onclick="showBlock('d4')"><div class="sidebar-dot" style="background:rgba(20,184,166,0.15);color:var(--teal)">🔢</div>Power of Sequence</div>
+ 
+  <div class="sidebar-section">Day 5 — How Systems Decide</div>
+  <div class="sidebar-item" id="nav-d5"   onclick="showBlock('d5')"><div class="sidebar-dot" style="background:rgba(6,214,160,0.15);color:var(--green)">🔀</div>If This, Then That</div>
+ 
+  <div class="sidebar-section">Day 6 — Data</div>
+  <div class="sidebar-item" id="nav-d6"   onclick="showBlock('d6')"><div class="sidebar-dot" style="background:rgba(255,209,102,0.15);color:var(--yellow)">📊</div>What Companies Track</div>
+ 
+  <div class="sidebar-section">Day 7 — Organizing Info</div>
+  <div class="sidebar-item" id="nav-d7"   onclick="showBlock('d7')"><div class="sidebar-dot" style="background:rgba(255,77,166,0.15);color:var(--pink)">📋</div>Spreadsheet Thinking</div>
+ 
+  <div class="sidebar-section">Day 8 — Communication</div>
+  <div class="sidebar-item" id="nav-d8"   onclick="showBlock('d8')"><div class="sidebar-dot" style="background:rgba(0,212,255,0.15);color:var(--cyan)">🗣️</div>Present Ideas Clearly</div>
+ 
+  <div class="sidebar-section">Day 9 — Smart Internet</div>
+  <div class="sidebar-item" id="nav-d9"   onclick="showBlock('d9')"><div class="sidebar-dot" style="background:rgba(244,63,94,0.15);color:var(--red)">🛡️</div>Use Internet Smartly</div>
+ 
+  <div class="sidebar-section">Day 10 — AI Awareness</div>
+  <div class="sidebar-item" id="nav-d10"  onclick="showBlock('d10')"><div class="sidebar-dot" style="background:rgba(168,85,247,0.15);color:var(--purple)">🤖</div>AI is a Tool</div>
+ 
+  <div class="sidebar-section">Day 11 — Problem Solving</div>
+  <div class="sidebar-item" id="nav-d11"  onclick="showBlock('d11')"><div class="sidebar-dot" style="background:rgba(255,107,43,0.15);color:var(--orange)">🔧</div>Think Like a Builder</div>
+ 
+  <div class="sidebar-section">Day 12 — Workflow Thinking</div>
+  <div class="sidebar-item" id="nav-d12"  onclick="showBlock('d12')"><div class="sidebar-dot" style="background:rgba(20,184,166,0.15);color:var(--teal)">🔁</div>Start to Finish Flow</div>
+ 
+  <div class="sidebar-section">Day 13 — Bridge to Python</div>
+  <div class="sidebar-item" id="nav-d13"  onclick="showBlock('d13')"><div class="sidebar-dot" style="background:rgba(6,214,160,0.15);color:var(--green)">🐍</div>Why Python Comes Next</div>
 </nav>
-
-<!-- CONTENT AREA -->
+ 
 <main class="content">
-
-<!-- ====== BLOCK: OPENING ====== -->
+ 
+<!-- ===== DAY 1 BLOCKS ===== -->
+ 
+<!-- OPENING -->
 <section class="block active" id="block-opening">
-  <div class="block-header">
-    <div class="block-tag tag-day1">Day 1 · Opening Hook · 10 mins</div>
-    <h1 class="block-title">Stop Being a User.<br>Start Being a Thinker.</h1>
-    <p class="block-subtitle">Plant the seed — every student uses technology, but almost none question it.</p>
-    <div class="time-pill">⏱ 10 minutes</div>
-  </div>
-
+  <div class="block-tag tag-d1">Day 1 · Opening Hook · 10 mins</div>
+  <h1 class="block-title">Stop Being a User.<br>Start Being a Thinker.</h1>
+  <p class="block-subtitle">Plant the seed — every student uses technology, but almost none question it.</p>
+  <div class="time-pill">⏱ 10 minutes</div>
+ 
   <div class="hook-box">
     <div class="hook-label">Ask the Class 👇</div>
     <p class="hook-text">"You pressed the <strong>power button</strong> on your phone this morning. What actually happened?"</p>
   </div>
-
-  <p style="color:var(--muted); font-size:14px; line-height:1.7; margin-bottom:16px;">Let them answer freely. They'll say "it turned on." Then start breaking it down layer by layer — screen, battery, operating system, processor, boot sequence. Watch their expressions change.</p>
-
-  <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin:20px 0;">
-    <div class="concept-card" style="text-align:center; padding:16px;">
-      <div style="font-size:28px; margin-bottom:8px;">📱</div>
-      <div style="font-size:12px; color:var(--muted);">Screen turns on</div>
-      <div style="font-size:10px; color:var(--cyan); margin-top:4px;">→ GPU activates</div>
-    </div>
-    <div class="concept-card" style="text-align:center; padding:16px;">
-      <div style="font-size:28px; margin-bottom:8px;">🔋</div>
-      <div style="font-size:12px; color:var(--muted);">Battery checked</div>
-      <div style="font-size:10px; color:var(--cyan); margin-top:4px;">→ Power IC reads voltage</div>
-    </div>
-    <div class="concept-card" style="text-align:center; padding:16px;">
-      <div style="font-size:28px; margin-bottom:8px;">⚙️</div>
-      <div style="font-size:12px; color:var(--muted);">OS loads</div>
-      <div style="font-size:10px; color:var(--cyan); margin-top:4px;">→ Kernel initializes</div>
-    </div>
+  <p style="color:var(--muted);font-size:14px;line-height:1.7;margin-bottom:16px;">Let them answer freely. They'll say "it turned on." Then start breaking it down layer by layer — screen, battery, operating system, processor, boot sequence. Watch their expressions change.</p>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin:18px 0;">
+    <div class="concept-card" style="text-align:center;padding:16px;"><div style="font-size:26px;margin-bottom:8px;">📱</div><div style="font-size:12px;color:var(--muted);">Screen turns on</div><div style="font-size:10px;color:var(--cyan);margin-top:4px;">→ GPU activates</div></div>
+    <div class="concept-card" style="text-align:center;padding:16px;"><div style="font-size:26px;margin-bottom:8px;">🔋</div><div style="font-size:12px;color:var(--muted);">Battery checked</div><div style="font-size:10px;color:var(--cyan);margin-top:4px;">→ Power IC reads voltage</div></div>
+    <div class="concept-card" style="text-align:center;padding:16px;"><div style="font-size:26px;margin-bottom:8px;">⚙️</div><div style="font-size:12px;color:var(--muted);">OS loads</div><div style="font-size:10px;color:var(--cyan);margin-top:4px;">→ Kernel initializes</div></div>
   </div>
-
-  <div style="background:rgba(6,214,160,0.06); border:1px solid rgba(6,214,160,0.2); border-radius:12px; padding:18px 22px; margin:20px 0;">
-    <div style="font-size:12px; color:var(--green); font-weight:600; margin-bottom:8px;">🎯 GOAL FOR TODAY</div>
-    <p style="font-size:15px; line-height:1.7;">Every student should leave today asking <strong style="color:var(--green)">"how does this REALLY work?"</strong> about at least 3 things they use daily.</p>
+  <div style="background:rgba(6,214,160,0.06);border:1px solid rgba(6,214,160,0.2);border-radius:12px;padding:16px 20px;margin:18px 0;">
+    <div style="font-size:11px;color:var(--green);font-weight:600;margin-bottom:6px;">🎯 GOAL FOR TODAY</div>
+    <p style="font-size:14px;line-height:1.7;">Every student should leave today asking <strong style="color:var(--green)">"how does this REALLY work?"</strong> about at least 3 things they use daily.</p>
   </div>
-
-  <div class="block-nav">
-    <div></div>
-    <button class="nav-pill next" onclick="showBlock('iceberg')">Next: Iceberg Concept →</button>
-  </div>
+  <div class="block-nav"><div></div><button class="nav-pill next" onclick="showBlock('iceberg')">Next: Iceberg Concept →</button></div>
 </section>
-
-<!-- ====== BLOCK: ICEBERG ====== -->
+ 
+<!-- ICEBERG -->
 <section class="block" id="block-iceberg">
-  <div class="block-header">
-    <div class="block-tag tag-day1">Day 1 · Block 1 · 20 mins</div>
-    <h1 class="block-title">The Iceberg Concept</h1>
-    <p class="block-subtitle">Everything they see is just the tip. The real action is below.</p>
-    <div class="time-pill">⏱ 20 minutes</div>
-  </div>
-
+  <div class="block-tag tag-d1">Day 1 · Block 1 · 20 mins</div>
+  <h1 class="block-title">The Iceberg Concept</h1>
+  <p class="block-subtitle">Everything they see is just the tip. The real action is below.</p>
+  <div class="time-pill">⏱ 20 minutes</div>
   <div id="iceberg-demo">
-    <p style="font-size:13px; color:var(--muted); margin-bottom:20px;">Click the button to reveal what's actually happening below the surface 👇</p>
-    <div style="display:flex; flex-direction:column; align-items:center;">
+    <p style="font-size:12px;color:var(--muted);margin-bottom:16px;">Click to reveal what's actually happening below the surface 👇</p>
+    <div style="display:flex;flex-direction:column;align-items:center;">
       <div class="iceberg-visible">📱 YouTube plays</div>
-      <div class="water-line" style="width:100%; margin:20px 0;"></div>
+      <div class="water-line" style="width:100%;margin:18px 0;"></div>
       <div class="iceberg-hidden" id="ice-hidden">
         <ul>
           <li>CDN server streams video in chunks</li>
@@ -515,671 +532,730 @@ body::before {
     </div>
     <button class="reveal-btn" id="ice-btn" onclick="revealIceberg()">🔍 Reveal What's Below</button>
   </div>
-
-  <h3 style="font-family:'Syne',sans-serif; font-size:16px; margin:24px 0 14px;">More real examples — click to reveal:</h3>
-
-  <div id="examples-grid" style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:16px 0;">
-    <div class="concept-card" style="cursor:pointer;" onclick="toggleExample(this, 'WhatsApp message sent ✅', ['End-to-end encrypted packets', 'Travels to Meta server in Singapore', 'Server routes to recipient device', 'Notification sent via FCM/APNs'])">
-      <h3>💬 WhatsApp sent</h3>
-      <p>What happens when you hit send?</p>
-      <div class="ex-reveal" style="display:none; margin-top:10px;"></div>
-    </div>
-    <div class="concept-card" style="cursor:pointer;" onclick="toggleExample(this, 'AC turns on ❄️', ['Remote sends IR signal at 38kHz', 'Receiver decodes frequency code', 'Microcontroller reads command', 'Compressor & fan activate'])">
-      <h3>❄️ AC Remote clicked</h3>
-      <p>How does a button control a machine?</p>
-      <div class="ex-reveal" style="display:none; margin-top:10px;"></div>
-    </div>
-    <div class="concept-card" style="cursor:pointer;" onclick="toggleExample(this, 'Google search result ⚡', ['Query sent to nearest data center', 'Search pre-built index (not live web)', 'Ranking algorithm scores 1000s of results', 'Top 10 returned in ~0.3 seconds'])">
-      <h3>🔍 Google search</h3>
-      <p>How do results appear in 0.3 seconds?</p>
-      <div class="ex-reveal" style="display:none; margin-top:10px;"></div>
-    </div>
-    <div class="concept-card" style="cursor:pointer;" onclick="toggleExample(this, 'Traffic signal changes 🚦', ['Road sensors detect vehicle count', 'Timer algorithm calculates wait time', 'Central server overrides in smart cities', 'Signal changes based on density'])">
-      <h3>🚦 Traffic signal</h3>
-      <p>Is someone sitting inside switching it?</p>
-      <div class="ex-reveal" style="display:none; margin-top:10px;"></div>
-    </div>
+  <h3 style="font-family:'Syne',sans-serif;font-size:15px;margin:22px 0 12px;">More examples — click to reveal:</h3>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+    <div class="concept-card" style="cursor:pointer;" onclick="toggleEx(this,['End-to-end encrypted packets','Travels to Meta server in Singapore','Server routes to recipient device','Notification sent via FCM/APNs'])"><h3>💬 WhatsApp sent</h3><p>What happens when you hit send?</p><div class="ex-reveal" style="display:none;margin-top:10px;"></div></div>
+    <div class="concept-card" style="cursor:pointer;" onclick="toggleEx(this,['Remote sends IR signal at 38kHz','Receiver decodes frequency code','Microcontroller reads command','Compressor & fan activate'])"><h3>❄️ AC Remote clicked</h3><p>How does a button control a machine?</p><div class="ex-reveal" style="display:none;margin-top:10px;"></div></div>
+    <div class="concept-card" style="cursor:pointer;" onclick="toggleEx(this,['Query sent to nearest data center','Search pre-built index (not live web)','Ranking algorithm scores 1000s of results','Top 10 returned in ~0.3 seconds'])"><h3>🔍 Google search</h3><p>How do results appear in 0.3 seconds?</p><div class="ex-reveal" style="display:none;margin-top:10px;"></div></div>
+    <div class="concept-card" style="cursor:pointer;" onclick="toggleEx(this,['Road sensors detect vehicle count','Timer algorithm calculates wait time','Central server overrides in smart cities','Signal changes based on density'])"><h3>🚦 Traffic signal</h3><p>Is someone sitting inside switching it?</p><div class="ex-reveal" style="display:none;margin-top:10px;"></div></div>
   </div>
-
-  <div class="block-nav">
-    <button class="nav-pill" onclick="showBlock('opening')">← Opening</button>
-    <span class="progress-text">2 / 12</span>
-    <button class="nav-pill next" onclick="showBlock('atm')">Next: ATM Demo →</button>
-  </div>
+  <div class="block-nav"><button class="nav-pill" onclick="showBlock('opening')">← Opening</button><span class="progress-text">2 / 26</span><button class="nav-pill next" onclick="showBlock('atm')">Next: ATM →</button></div>
 </section>
-
-<!-- ====== BLOCK: ATM ====== -->
+ 
+<!-- ATM -->
 <section class="block" id="block-atm">
-  <div class="block-header">
-    <div class="block-tag tag-day1">Day 1 · Block 1 · Live Demo</div>
-    <h1 class="block-title">ATM — In 3 Seconds</h1>
-    <p class="block-subtitle">Card in → Cash out. But what happens in between?</p>
-    <div class="time-pill">⏱ Part of 20 min block</div>
-  </div>
-
-  <div class="hook-box">
-    <div class="hook-label">Ask the Class 👇</div>
-    <p class="hook-text">"You put your card in the ATM. Money comes out. <strong>How does the machine know your balance? Who tells it?</strong>"</p>
-  </div>
-
+  <div class="block-tag tag-d1">Day 1 · Block 2 · Live Demo</div>
+  <h1 class="block-title">ATM — In 3 Seconds</h1>
+  <p class="block-subtitle">Card in → Cash out. But what happens in between?</p>
+  <div class="time-pill">⏱ Part of 20 min block</div>
+  <div class="hook-box"><div class="hook-label">Ask the Class 👇</div><p class="hook-text">"You put your card in the ATM. Money comes out. <strong>How does the machine know your balance? Who tells it?</strong>"</p></div>
   <div id="atm-demo">
     <div class="atm-progress"><div class="atm-progress-bar" id="atm-bar"></div></div>
-    <div class="atm-flow" id="atm-flow">
-      <div class="atm-step" id="as0"><span class="step-icon">💳</span><div class="step-label">Card Inserted</div><div class="step-desc">Chip is read</div></div>
-      <div class="atm-arrow" id="aa0">→</div>
-      <div class="atm-step" id="as1"><span class="step-icon">📡</span><div class="step-label">Bank Connected</div><div class="step-desc">Secure tunnel</div></div>
-      <div class="atm-arrow" id="aa1">→</div>
-      <div class="atm-step" id="as2"><span class="step-icon">🔐</span><div class="step-label">PIN Verified</div><div class="step-desc">Encrypted check</div></div>
-      <div class="atm-arrow" id="aa2">→</div>
-      <div class="atm-step" id="as3"><span class="step-icon">💰</span><div class="step-label">Balance Checked</div><div class="step-desc">Bank server</div></div>
-      <div class="atm-arrow" id="aa3">→</div>
-      <div class="atm-step" id="as4"><span class="step-icon">✅</span><div class="step-label">Approved</div><div class="step-desc">Signal sent back</div></div>
-      <div class="atm-arrow" id="aa4">→</div>
+    <div class="atm-flow">
+      <div class="atm-step" id="as0"><span class="step-icon">💳</span><div class="step-label">Card Inserted</div><div class="step-desc">Chip is read</div></div><div class="atm-arrow" id="aa0">→</div>
+      <div class="atm-step" id="as1"><span class="step-icon">📡</span><div class="step-label">Bank Connected</div><div class="step-desc">Secure tunnel</div></div><div class="atm-arrow" id="aa1">→</div>
+      <div class="atm-step" id="as2"><span class="step-icon">🔐</span><div class="step-label">PIN Verified</div><div class="step-desc">Encrypted check</div></div><div class="atm-arrow" id="aa2">→</div>
+      <div class="atm-step" id="as3"><span class="step-icon">💰</span><div class="step-label">Balance Checked</div><div class="step-desc">Bank server</div></div><div class="atm-arrow" id="aa3">→</div>
+      <div class="atm-step" id="as4"><span class="step-icon">✅</span><div class="step-label">Approved</div><div class="step-desc">Signal back</div></div><div class="atm-arrow" id="aa4">→</div>
       <div class="atm-step" id="as5"><span class="step-icon">💵</span><div class="step-label">Cash Released</div><div class="step-desc">Motor opens</div></div>
     </div>
-    <div style="text-align:center; margin-top:20px;">
-      <button class="run-btn" id="atm-run-btn" onclick="runATM()">▶ Simulate ATM Transaction</button>
-    </div>
-    <p style="text-align:center; font-size:12px; color:var(--muted); margin-top:12px;" id="atm-msg">All of this in under <strong style="color:var(--green)">3 seconds.</strong></p>
+    <button class="run-btn" id="atm-btn" onclick="runATM()">▶ Simulate ATM Transaction</button>
+    <p style="text-align:center;font-size:11px;color:var(--muted);margin-top:10px;" id="atm-msg">All of this in under <strong style="color:var(--green)">3 seconds.</strong></p>
   </div>
-
-  <div class="concept-card">
-    <h3>🌍 Where is your bank's server?</h3>
-    <p>The bank's servers (computers) could be in Mumbai, Bengaluru, or even a different country. When you use an ATM in Vizianagaram, your PIN travels as encrypted data to that server and back — all in milliseconds, through fiber optic cables under roads and buildings.</p>
-  </div>
-
-  <div class="block-nav">
-    <button class="nav-pill" onclick="showBlock('iceberg')">← Iceberg</button>
-    <span class="progress-text">3 / 12</span>
-    <button class="nav-pill next" onclick="showBlock('internet')">Next: Internet →</button>
-  </div>
+  <div class="concept-card"><h3>🌍 Where is your bank's server?</h3><p>The bank's servers could be in Mumbai, Bengaluru, or even a different country. Your PIN travels as encrypted data to that server and back — all in milliseconds, through fiber optic cables under roads and buildings.</p></div>
+  <div class="block-nav"><button class="nav-pill" onclick="showBlock('iceberg')">← Iceberg</button><span class="progress-text">3 / 26</span><button class="nav-pill next" onclick="showBlock('internet')">Next: Internet →</button></div>
 </section>
-
-<!-- ====== BLOCK: INTERNET ====== -->
+ 
+<!-- INTERNET -->
 <section class="block" id="block-internet">
-  <div class="block-header">
-    <div class="block-tag tag-day1">Day 1 · Block 4 · 25 mins</div>
-    <h1 class="block-title">What Actually IS the Internet?</h1>
-    <p class="block-subtitle">Not WiFi. Not the phone. The actual system underneath.</p>
-    <div class="time-pill">⏱ 25 minutes</div>
-  </div>
-
-  <div class="hook-box">
-    <div class="hook-label">Ask the Class 👇</div>
-    <p class="hook-text">"When you send a message to a friend in <strong>Hyderabad</strong> from here — where does it physically go?"</p>
-  </div>
-
+  <div class="block-tag tag-d1">Day 1 · Block 3 · 25 mins</div>
+  <h1 class="block-title">What Actually IS the Internet?</h1>
+  <p class="block-subtitle">Not WiFi. Not the phone. The actual system underneath.</p>
+  <div class="time-pill">⏱ 25 minutes</div>
+  <div class="hook-box"><div class="hook-label">Ask the Class 👇</div><p class="hook-text">"When you send a message to a friend in <strong>Hyderabad</strong> from here — where does it physically go?"</p></div>
   <div id="internet-demo">
-    <p style="font-size:13px; color:var(--muted); margin-bottom:16px;">Watch how a message travels across the internet ↓</p>
+    <p style="font-size:12px;color:var(--muted);margin-bottom:14px;">Watch how a message travels across the internet ↓</p>
     <div class="nodes-row">
-      <div class="node-wrap">
-        <div class="server-node" style="background:rgba(26,111,255,0.12); border-color:rgba(26,111,255,0.3);">📱</div>
-        <div class="node-label">Your Phone<br>Vizianagaram</div>
-      </div>
+      <div class="node-wrap"><div class="server-node" style="background:rgba(26,111,255,0.12);border-color:rgba(26,111,255,0.3);">📱</div><div class="node-label">Your Phone<br>Vizianagaram</div></div>
       <div class="connector-line"></div>
-      <div class="node-wrap">
-        <div class="server-node">📡</div>
-        <div class="node-label">Tower<br>→ ISP</div>
-      </div>
+      <div class="node-wrap"><div class="server-node">📡</div><div class="node-label">Tower<br>→ ISP</div></div>
       <div class="connector-line"></div>
-      <div class="node-wrap">
-        <div class="server-node">🏢</div>
-        <div class="node-label">Meta Server<br>Singapore</div>
-      </div>
+      <div class="node-wrap"><div class="server-node">🏢</div><div class="node-label">Meta Server<br>Singapore</div></div>
       <div class="connector-line"></div>
-      <div class="node-wrap">
-        <div class="server-node">📡</div>
-        <div class="node-label">ISP<br>→ Tower</div>
-      </div>
+      <div class="node-wrap"><div class="server-node">📡</div><div class="node-label">ISP<br>→ Tower</div></div>
       <div class="connector-line"></div>
-      <div class="node-wrap">
-        <div class="server-node" style="background:rgba(6,214,160,0.12); border-color:rgba(6,214,160,0.3);">📱</div>
-        <div class="node-label">Friend's Phone<br>Hyderabad</div>
-      </div>
+      <div class="node-wrap"><div class="server-node" style="background:rgba(6,214,160,0.12);border-color:rgba(6,214,160,0.3);">📱</div><div class="node-label">Friend's Phone<br>Hyderabad</div></div>
     </div>
-    <div class="packet-track" id="packet-track">
-      <div class="packet-label">📤 Sending...</div>
-      <div class="packet-label-right">📥 Received!</div>
-      <div class="packet" id="packet1">P1</div>
-    </div>
-    <div style="text-align:center;">
-      <button class="run-btn" onclick="sendPacket()">📤 Send a Message</button>
-    </div>
+    <div class="packet-track"><div class="packet-label">📤 Sending...</div><div class="packet-label-right">📥 Received!</div><div class="packet" id="packet1">P1</div></div>
+    <button class="run-btn" onclick="sendPacket()">📤 Send a Message</button>
   </div>
-
-  <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:20px 0;">
-    <div class="concept-card">
-      <h3>📦 What is a Packet?</h3>
-      <p>Your message is broken into small pieces called packets — like tearing a letter into 10 pieces. Each piece travels a different route and they're reassembled at the destination.</p>
-    </div>
-    <div class="concept-card">
-      <h3>🏠 What is an IP Address?</h3>
-      <p>Every device on the internet has an IP address — like a home address. Without it, the internet wouldn't know where to deliver your data.</p>
-    </div>
-    <div class="concept-card">
-      <h3>📒 What is DNS?</h3>
-      <p>"google.com" is easy to remember. But computers work with numbers. DNS is the phone book that converts "google.com" into 142.250.80.46 — its actual address.</p>
-    </div>
-    <div class="concept-card">
-      <h3>🌊 Underwater Cables?</h3>
-      <p>Yes! Thousands of kilometers of fiber optic cables run under the ocean floor — connecting India to Singapore, USA, Europe. That's how global data travels in milliseconds.</p>
-    </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:18px 0;">
+    <div class="concept-card"><h3>📦 What is a Packet?</h3><p>Your message is broken into small pieces called packets — like tearing a letter into 10 pieces. Each piece travels a different route and they're reassembled at the destination.</p></div>
+    <div class="concept-card"><h3>🏠 What is an IP Address?</h3><p>Every device on the internet has an IP address — like a home address. Without it, the internet wouldn't know where to deliver your data.</p></div>
+    <div class="concept-card"><h3>📒 What is DNS?</h3><p>"google.com" is easy to remember. But computers work with numbers. DNS converts "google.com" into 142.250.80.46 — its actual address.</p></div>
+    <div class="concept-card"><h3>🌊 Underwater Cables?</h3><p>Thousands of kilometers of fiber optic cables run under the ocean floor — connecting India to Singapore, USA, Europe. That's how global data travels in milliseconds.</p></div>
   </div>
-
-  <div class="block-nav">
-    <button class="nav-pill" onclick="showBlock('atm')">← ATM</button>
-    <span class="progress-text">4 / 12</span>
-    <button class="nav-pill next" onclick="showBlock('fiveq')">Next: 5Q Framework →</button>
-  </div>
+  <div class="block-nav"><button class="nav-pill" onclick="showBlock('atm')">← ATM</button><span class="progress-text">4 / 26</span><button class="nav-pill next" onclick="showBlock('fiveq')">Next: 5Q Framework →</button></div>
 </section>
-
-<!-- ====== BLOCK: 5Q FRAMEWORK ====== -->
+ 
+<!-- 5Q -->
 <section class="block" id="block-fiveq">
-  <div class="block-header">
-    <div class="block-tag tag-day1">Day 1 · Block 2 · 25 mins</div>
-    <h1 class="block-title">The 5 Questions Framework</h1>
-    <p class="block-subtitle">Every time you see technology — ask these 5. Always.</p>
-    <div class="time-pill">⏱ 25 minutes</div>
-  </div>
-
+  <div class="block-tag tag-d1">Day 1 · Block 4 · 25 mins</div>
+  <h1 class="block-title">The 5 Questions Framework</h1>
+  <p class="block-subtitle">Every time you see technology — ask these 5. Always.</p>
+  <div class="time-pill">⏱ 25 minutes</div>
   <div class="five-q">
-    <div class="q-card">
-      <div class="q-num">01</div>
-      <div class="q-text">What does it DO?</div>
-      <div class="q-hint">The visible function. What happens when you use it?</div>
-    </div>
-    <div class="q-card">
-      <div class="q-num">02</div>
-      <div class="q-text">HOW does it do it?</div>
-      <div class="q-hint">The mechanism. What's the system underneath?</div>
-    </div>
-    <div class="q-card">
-      <div class="q-num">03</div>
-      <div class="q-text">What POWERS it?</div>
-      <div class="q-hint">Energy or data source. What fuels this system?</div>
-    </div>
-    <div class="q-card">
-      <div class="q-num">04</div>
-      <div class="q-text">What if ONE part FAILS?</div>
-      <div class="q-hint">Dependency thinking. What breaks if X stops?</div>
-    </div>
-    <div class="q-card" style="grid-column:1/-1;">
-      <div class="q-num">05</div>
-      <div class="q-text">Who built this and WHY?</div>
-      <div class="q-hint">Human + business purpose. What problem were they solving?</div>
+    <div class="q-card"><div class="q-num">01</div><div class="q-text">What does it DO?</div><div class="q-hint">The visible function. What happens when you use it?</div></div>
+    <div class="q-card"><div class="q-num">02</div><div class="q-text">HOW does it do it?</div><div class="q-hint">The mechanism. What's the system underneath?</div></div>
+    <div class="q-card"><div class="q-num">03</div><div class="q-text">What POWERS it?</div><div class="q-hint">Energy or data source. What fuels this system?</div></div>
+    <div class="q-card"><div class="q-num">04</div><div class="q-text">What if ONE part FAILS?</div><div class="q-hint">Dependency thinking. What breaks if X stops?</div></div>
+    <div class="q-card" style="grid-column:1/-1;"><div class="q-num">05</div><div class="q-text">Who built this and WHY?</div><div class="q-hint">Human + business purpose. What problem were they solving?</div></div>
+  </div>
+  <div style="background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:14px;padding:20px;margin:18px 0;">
+    <div style="font-family:'Syne',sans-serif;font-size:13px;font-weight:700;margin-bottom:14px;color:var(--cyan);">🎯 Live Practice — Apply to the Fan/AC in this Room</div>
+    <div style="display:grid;gap:8px;">
+      <div style="display:flex;gap:12px;align-items:flex-start;padding:9px;background:var(--card);border-radius:8px;"><span style="color:var(--blue);font-weight:700;font-size:12px;min-width:20px;">Q1</span><span style="font-size:13px;color:var(--muted);">What does it do? → <strong style="color:var(--white)">Moves air to cool the room</strong></span></div>
+      <div style="display:flex;gap:12px;align-items:flex-start;padding:9px;background:var(--card);border-radius:8px;"><span style="color:var(--blue);font-weight:700;font-size:12px;min-width:20px;">Q2</span><span style="font-size:13px;color:var(--muted);">How? → <strong style="color:var(--white)">Electric motor spins blades, converts electricity to rotation</strong></span></div>
+      <div style="display:flex;gap:12px;align-items:flex-start;padding:9px;background:var(--card);border-radius:8px;"><span style="color:var(--blue);font-weight:700;font-size:12px;min-width:20px;">Q3</span><span style="font-size:13px;color:var(--muted);">Power? → <strong style="color:var(--white)">Electricity from grid → transformer → your room's wire</strong></span></div>
+      <div style="display:flex;gap:12px;align-items:flex-start;padding:9px;background:var(--card);border-radius:8px;"><span style="color:var(--blue);font-weight:700;font-size:12px;min-width:20px;">Q4</span><span style="font-size:13px;color:var(--muted);">Failure? → <strong style="color:var(--white)">Capacitor fails → motor won't start. Wire cut → no power.</strong></span></div>
+      <div style="display:flex;gap:12px;align-items:flex-start;padding:9px;background:var(--card);border-radius:8px;"><span style="color:var(--blue);font-weight:700;font-size:12px;min-width:20px;">Q5</span><span style="font-size:13px;color:var(--muted);">Why built? → <strong style="color:var(--white)">Humans in hot climates needed cooling without ice. Invented 1882.</strong></span></div>
     </div>
   </div>
-
-  <div style="background:rgba(255,255,255,0.03); border:1px solid var(--border); border-radius:14px; padding:22px; margin:20px 0;">
-    <div style="font-family:'Syne',sans-serif; font-size:14px; font-weight:700; margin-bottom:16px; color:var(--cyan);">🎯 Live Practice — Apply to the Fan/AC in this Room</div>
-    <div style="display:grid; gap:10px;">
-      <div style="display:flex; gap:12px; align-items:flex-start; padding:10px; background:var(--card); border-radius:8px;">
-        <span style="color:var(--blue); font-weight:700; font-size:13px; min-width:20px;">Q1</span>
-        <span style="font-size:13px; color:var(--muted);">What does it do? → <strong style="color:var(--white)">Moves air to cool the room</strong></span>
-      </div>
-      <div style="display:flex; gap:12px; align-items:flex-start; padding:10px; background:var(--card); border-radius:8px;">
-        <span style="color:var(--blue); font-weight:700; font-size:13px; min-width:20px;">Q2</span>
-        <span style="font-size:13px; color:var(--muted);">How? → <strong style="color:var(--white)">Electric motor spins blades, motor converts electricity to rotation</strong></span>
-      </div>
-      <div style="display:flex; gap:12px; align-items:flex-start; padding:10px; background:var(--card); border-radius:8px;">
-        <span style="color:var(--blue); font-weight:700; font-size:13px; min-width:20px;">Q3</span>
-        <span style="font-size:13px; color:var(--muted);">Power? → <strong style="color:var(--white)">Electricity from grid → transformer → your room's wire</strong></span>
-      </div>
-      <div style="display:flex; gap:12px; align-items:flex-start; padding:10px; background:var(--card); border-radius:8px;">
-        <span style="color:var(--blue); font-weight:700; font-size:13px; min-width:20px;">Q4</span>
-        <span style="font-size:13px; color:var(--muted);">Failure? → <strong style="color:var(--white)">Capacitor fails → motor won't start. Wire cut → no power.</strong></span>
-      </div>
-      <div style="display:flex; gap:12px; align-items:flex-start; padding:10px; background:var(--card); border-radius:8px;">
-        <span style="color:var(--blue); font-weight:700; font-size:13px; min-width:20px;">Q5</span>
-        <span style="font-size:13px; color:var(--muted);">Why built? → <strong style="color:var(--white)">Humans in hot climates needed cooling without ice. Invented 1882.</strong></span>
-      </div>
-    </div>
-  </div>
-
-  <div class="block-nav">
-    <button class="nav-pill" onclick="showBlock('internet')">← Internet</button>
-    <span class="progress-text">5 / 12</span>
-    <button class="nav-pill next" onclick="showBlock('computer')">Next: Inside a Computer →</button>
-  </div>
+  <div class="block-nav"><button class="nav-pill" onclick="showBlock('internet')">← Internet</button><span class="progress-text">5 / 26</span><button class="nav-pill next" onclick="showBlock('computer')">Next: Inside a Computer →</button></div>
 </section>
-
-<!-- ====== BLOCK: COMPUTER ====== -->
+ 
+<!-- COMPUTER -->
 <section class="block" id="block-computer">
-  <div class="block-header">
-    <div class="block-tag tag-day1">Day 1 · Block 3 · 30 mins</div>
-    <h1 class="block-title">Inside a Computer</h1>
-    <p class="block-subtitle">Not as hardware specs — as a story everyone can understand.</p>
-    <div class="time-pill">⏱ 30 minutes</div>
+  <div class="block-tag tag-d1">Day 1 · Block 5 · 30 mins</div>
+  <h1 class="block-title">Inside a Computer</h1>
+  <p class="block-subtitle">Not as hardware specs — as a story everyone can understand.</p>
+  <div class="time-pill">⏱ 30 minutes</div>
+  <div class="hook-box"><div class="hook-label">Ask the Class 👇</div><p class="hook-text">"When you open a game on your laptop — <strong>what's actually happening inside the box?</strong>"</p></div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:18px 0;">
+    <div class="concept-card" style="border-color:rgba(26,111,255,0.3);"><h3 style="color:var(--blue);">🧠 CPU — The Brain</h3><p>Processes every single instruction. When you click "open game" — CPU figures out what to do next, millions of times per second.</p><p style="margin-top:8px;font-size:12px;color:var(--cyan);">School analogy → The Principal who makes every decision</p></div>
+    <div class="concept-card" style="border-color:rgba(6,214,160,0.3);"><h3 style="color:var(--green);">📋 RAM — The Desk</h3><p>What's open RIGHT NOW. When you have 20 Chrome tabs open, they all sit in RAM. Close the laptop → RAM is cleared. Like clearing a desk.</p><p style="margin-top:8px;font-size:12px;color:var(--cyan);">School analogy → The classroom where work is happening NOW</p></div>
+    <div class="concept-card" style="border-color:rgba(255,209,102,0.3);"><h3 style="color:var(--yellow);">💾 Storage — The Almirah</h3><p>Files stay here forever — even when turned off. SSD = fast, HDD = slow but big.</p><p style="margin-top:8px;font-size:12px;color:var(--cyan);">School analogy → The library — everything stored permanently</p></div>
+    <div class="concept-card" style="border-color:rgba(255,77,166,0.3);"><h3 style="color:var(--pink);">🎨 GPU — The Artist</h3><p>Handles all visuals. Every pixel when playing BGMI — the GPU is drawing all of it, 60 times per second.</p><p style="margin-top:8px;font-size:12px;color:var(--cyan);">School analogy → The art teacher who handles all drawings</p></div>
   </div>
-
-  <div class="hook-box">
-    <div class="hook-label">Ask the Class 👇</div>
-    <p class="hook-text">"When you open a game on your laptop — <strong>what's actually happening inside the box?</strong>"</p>
-  </div>
-
-  <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:20px 0;">
-    <div class="concept-card" style="border-color:rgba(26,111,255,0.3);">
-      <h3 style="color:var(--blue);">🧠 CPU — The Brain</h3>
-      <p>Processes every single instruction. When you click "open game" — CPU figures out what to do next, millions of times per second.</p>
-      <p style="margin-top:8px; font-size:12px; color:var(--cyan);">School analogy → The Principal who makes every decision</p>
-    </div>
-    <div class="concept-card" style="border-color:rgba(6,214,160,0.3);">
-      <h3 style="color:var(--green);">📋 RAM — The Desk</h3>
-      <p>What's open RIGHT NOW. When you have 20 Chrome tabs open, they all sit in RAM. Close the laptop → RAM is cleared. Like clearing a desk.</p>
-      <p style="margin-top:8px; font-size:12px; color:var(--cyan);">School analogy → The classroom where work is happening NOW</p>
-    </div>
-    <div class="concept-card" style="border-color:rgba(255,209,102,0.3);">
-      <h3 style="color:var(--yellow);">💾 Storage — The Almirah</h3>
-      <p>Files stay here forever — even when turned off. Your photos, videos, games are all stored here. SSD = fast, HDD = slow but big.</p>
-      <p style="margin-top:8px; font-size:12px; color:var(--cyan);">School analogy → The library — everything stored permanently</p>
-    </div>
-    <div class="concept-card" style="border-color:rgba(255,77,166,0.3);">
-      <h3 style="color:var(--pink);">🎨 GPU — The Artist</h3>
-      <p>Handles all visuals. Every pixel on your screen when playing BGMI — the GPU is drawing all of it, 60 times per second.</p>
-      <p style="margin-top:8px; font-size:12px; color:var(--cyan);">School analogy → The art teacher who handles all drawings</p>
-    </div>
-  </div>
-
-  <div class="concept-card" style="border-color:rgba(255,107,43,0.3);">
-    <h3 style="color:var(--orange);">🛣️ Motherboard — The Roads</h3>
-    <p>Connects everything. CPU, RAM, GPU, Storage — they all talk to each other through the motherboard. No motherboard = nothing connects = computer is useless.</p>
-    <p style="margin-top:8px; font-size:12px; color:var(--cyan);">School analogy → The corridors that connect all departments</p>
-  </div>
-
-  <div class="activity-box" style="margin-top:24px;">
-    <div class="activity-label">Discussion Question</div>
-    <div class="activity-q">"When your computer becomes very slow — which part do you think is the problem and why?"</div>
-    <div class="activity-hint">Hint: RAM is full (too many tabs) → slow. SSD is slow (old laptop) → slow to open files. CPU is old → slow at processing. Let students guess and debate.</div>
-  </div>
-
-  <div class="block-nav">
-    <button class="nav-pill" onclick="showBlock('fiveq')">← 5Q Framework</button>
-    <span class="progress-text">6 / 12</span>
-    <button class="nav-pill next" onclick="showBlock('d1activity')">Next: Day 1 Activity →</button>
-  </div>
+  <div class="concept-card" style="border-color:rgba(255,107,43,0.3);"><h3 style="color:var(--orange);">🛣️ Motherboard — The Roads</h3><p>Connects everything. CPU, RAM, GPU, Storage — they all talk to each other through the motherboard. No motherboard = nothing connects = computer is useless.</p><p style="margin-top:8px;font-size:12px;color:var(--cyan);">School analogy → The corridors that connect all departments</p></div>
+  <div class="activity-box" style="margin-top:20px;"><div class="activity-label">Discussion Question</div><div class="activity-q">"When your computer becomes very slow — which part do you think is the problem and why?"</div><div class="activity-hint">RAM is full (too many tabs) → slow. SSD is slow → slow to open files. CPU is old → slow at processing. Let students guess and debate.</div></div>
+  <div class="block-nav"><button class="nav-pill" onclick="showBlock('fiveq')">← 5Q Framework</button><span class="progress-text">6 / 26</span><button class="nav-pill next" onclick="showBlock('d1act')">Next: Day 1 Activity →</button></div>
 </section>
-
-<!-- ====== BLOCK: D1 ACTIVITY ====== -->
-<section class="block" id="block-d1activity">
-  <div class="block-header">
-    <div class="block-tag tag-day1">Day 1 · Closing · 10 mins</div>
-    <h1 class="block-title">"Break It Down" Challenge</h1>
-    <p class="block-subtitle">Students apply everything they just learned.</p>
-    <div class="time-pill">⏱ 10 minutes</div>
+ 
+<!-- D1 ACTIVITY -->
+<section class="block" id="block-d1act">
+  <div class="block-tag tag-d1">Day 1 · Closing · 10 mins</div>
+  <h1 class="block-title">"Break It Down" Challenge</h1>
+  <p class="block-subtitle">Students apply everything they just learned.</p>
+  <div class="time-pill">⏱ 10 minutes</div>
+  <div style="display:grid;gap:12px;margin:18px 0;">
+    <div class="activity-box"><div class="activity-label">Challenge A</div><div class="activity-q">Zomato delivers food in 30 minutes. What's happening behind the app?</div><div class="activity-hint">Think about: GPS, delivery partner assignment, restaurant order system, real-time tracking, payment processing</div></div>
+    <div class="activity-box"><div class="activity-label">Challenge B</div><div class="activity-q">An OTP reaches your phone in 2 seconds. How?</div><div class="activity-hint">Server generates a random number, stores it, sends through SMS gateway, telecom tower delivers it</div></div>
+    <div class="activity-box"><div class="activity-label">Challenge C</div><div class="activity-q">Netflix knows exactly what show to recommend to you. How?</div><div class="activity-hint">Tracking what you watched, how long, did you finish it, what others with similar taste watch — AI recommendation system</div></div>
   </div>
-
-  <p style="color:var(--muted); font-size:14px; line-height:1.7; margin-bottom:20px;">Give students one scenario each. Ask them to explain all 5 layers — what they see, what happens behind it. Don't correct. Encourage deeper thinking.</p>
-
-  <div style="display:grid; gap:14px; margin:20px 0;">
-    <div class="activity-box">
-      <div class="activity-label">Challenge A</div>
-      <div class="activity-q">Zomato delivers food in 30 minutes. What's happening behind the app?</div>
-      <div class="activity-hint">Think about: GPS, delivery partner assignment, restaurant order system, real-time tracking, payment processing</div>
-    </div>
-    <div class="activity-box">
-      <div class="activity-label">Challenge B</div>
-      <div class="activity-q">An OTP reaches your phone in 2 seconds. How?</div>
-      <div class="activity-hint">Think about: server generates a random number, stores it, sends it through SMS gateway, telecom tower delivers it</div>
-    </div>
-    <div class="activity-box">
-      <div class="activity-label">Challenge C</div>
-      <div class="activity-q">Netflix knows exactly what show to recommend to you. How?</div>
-      <div class="activity-hint">Think about: tracking what you watched, how long, did you finish it, what others with similar taste watch, AI recommendation system</div>
-    </div>
-  </div>
-
-  <div style="background:rgba(6,214,160,0.06); border:1px solid rgba(6,214,160,0.2); border-radius:12px; padding:18px 22px; margin:20px 0;">
-    <div style="font-size:12px; color:var(--green); font-weight:600; margin-bottom:8px;">✅ Day 1 Done! What students should now know:</div>
-    <div style="display:grid; gap:6px;">
-      <div style="font-size:13px; color:var(--muted);">✓ Everything has a backend system most people never see</div>
-      <div style="font-size:13px; color:var(--muted);">✓ The 5 Questions Framework for analyzing any technology</div>
-      <div style="font-size:13px; color:var(--muted);">✓ How ATMs, internet, and computers work at a basic level</div>
-      <div style="font-size:13px; color:var(--muted);">✓ Thinking habit: "Stop and ask HOW before moving on"</div>
-    </div>
-  </div>
-
-  <div class="block-nav">
-    <button class="nav-pill" onclick="showBlock('computer')">← Computer</button>
-    <span class="progress-text">7 / 12</span>
-    <button class="nav-pill next" onclick="switchDay(2); showBlock('company-intro')">Day 2: Companies →</button>
-  </div>
+  <div class="takeaway-box"><div class="takeaway-label">✅ Day 1 Done — What students should now know</div><div class="takeaway-item">Everything has a backend system most people never see</div><div class="takeaway-item">The 5 Questions Framework for analyzing any technology</div><div class="takeaway-item">How ATMs, internet, and computers work at a basic level</div><div class="takeaway-item">Thinking habit: "Stop and ask HOW before moving on"</div></div>
+  <div class="block-nav"><button class="nav-pill" onclick="showBlock('computer')">← Computer</button><span class="progress-text">7 / 26</span><button class="nav-pill next orange-next" onclick="showBlock('compintro')">Day 2: Companies →</button></div>
 </section>
-
-<!-- ====== BLOCK: COMPANY INTRO ====== -->
-<section class="block" id="block-company-intro">
-  <div class="block-header">
-    <div class="block-tag tag-day2">Day 2 · Opening · 15 mins</div>
-    <h1 class="block-title">What Is a Company, Really?</h1>
-    <p class="block-subtitle">Before Zomato and Ola — understand what a company actually is.</p>
-    <div class="time-pill">⏱ 15 minutes</div>
+ 
+<!-- ===== DAY 2 BLOCKS ===== -->
+ 
+<!-- COMPANY INTRO -->
+<section class="block" id="block-compintro">
+  <div class="block-tag tag-d2">Day 2 · Opening · 15 mins</div>
+  <h1 class="block-title">What Is a Company, Really?</h1>
+  <p class="block-subtitle">Before Zomato and Ola — understand what a company actually is.</p>
+  <div class="time-pill">⏱ 15 minutes</div>
+  <div class="hook-box orange-hook"><div class="hook-label" style="color:var(--orange);">Ask the Class 👇</div><p class="hook-text">"Raise your hand if your family has ever ordered food online or booked a cab online. Now — <strong style="color:var(--orange);">do you know the story of HOW those companies started?</strong>"</p></div>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin:20px 0;">
+    <div class="concept-card" style="text-align:center;padding:18px;"><div style="font-size:28px;margin-bottom:8px;">😣</div><div style="font-family:'Syne',sans-serif;font-weight:700;font-size:13px;margin-bottom:5px;">A Problem</div><div style="font-size:12px;color:var(--muted);">Something that frustrates many people every day</div></div>
+    <div class="concept-card" style="text-align:center;padding:18px;"><div style="font-size:28px;margin-bottom:8px;">💡</div><div style="font-family:'Syne',sans-serif;font-weight:700;font-size:13px;margin-bottom:5px;">An Insight</div><div style="font-size:12px;color:var(--muted);">"What if there was a better way?"</div></div>
+    <div class="concept-card" style="text-align:center;padding:18px;"><div style="font-size:28px;margin-bottom:8px;">🏗️</div><div style="font-family:'Syne',sans-serif;font-weight:700;font-size:13px;margin-bottom:5px;">A Solution</div><div style="font-size:12px;color:var(--muted);">Product + team + money + technology</div></div>
   </div>
-
-  <div class="hook-box" style="background:linear-gradient(135deg, rgba(255,107,43,0.1), rgba(255,209,102,0.05)); border-color:rgba(255,107,43,0.25);">
-    <div class="hook-label" style="color:var(--orange);">Ask the Class 👇</div>
-    <p class="hook-text">"Raise your hand if your family has ever ordered food online or booked a cab online. Now — <strong>do you know the story of HOW those companies started?</strong>"</p>
+  <div class="thought-bubble"><p>"Every CEO's first job is not to make money — it is to <strong>find a real problem and obsess over solving it.</strong> The money comes later, if the solution is good enough."</p></div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:18px 0;">
+    <div class="concept-card"><h3>👥 People (Team)</h3><p>Engineers, designers, salespeople, operations. A great idea with no team stays an idea forever.</p></div>
+    <div class="concept-card"><h3>💰 Money (Funding)</h3><p>Investors give money in exchange for a share of the company. Called "equity." Zomato raised billions before it was profitable.</p></div>
+    <div class="concept-card"><h3>⚙️ Technology</h3><p>The app, website, backend servers, algorithms — the tools that make the solution work at scale.</p></div>
+    <div class="concept-card"><h3>📊 Business Model</h3><p>How does money come IN? Without this, it's a charity, not a company. Every company must answer this.</p></div>
   </div>
-
-  <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin:24px 0;">
-    <div class="concept-card" style="text-align:center; padding:18px;">
-      <div style="font-size:32px; margin-bottom:10px;">😣</div>
-      <div style="font-family:'Syne',sans-serif; font-weight:700; font-size:14px; margin-bottom:6px;">A Problem</div>
-      <div style="font-size:12px; color:var(--muted);">Something that frustrates many people every day</div>
-    </div>
-    <div class="concept-card" style="text-align:center; padding:18px;">
-      <div style="font-size:32px; margin-bottom:10px;">💡</div>
-      <div style="font-family:'Syne',sans-serif; font-weight:700; font-size:14px; margin-bottom:6px;">An Insight</div>
-      <div style="font-size:12px; color:var(--muted);">"What if there was a better way?"</div>
-    </div>
-    <div class="concept-card" style="text-align:center; padding:18px;">
-      <div style="font-size:32px; margin-bottom:10px;">🏗️</div>
-      <div style="font-family:'Syne',sans-serif; font-weight:700; font-size:14px; margin-bottom:6px;">A Solution</div>
-      <div style="font-size:12px; color:var(--muted);">Product + team + money + technology</div>
-    </div>
-  </div>
-
-  <div class="thought-bubble">
-    <p>"Every CEO's first job is not to make money — it is to <strong>find a real problem and obsess over solving it.</strong> The money comes later, if the solution is good enough."</p>
-  </div>
-
-  <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:20px 0;">
-    <div class="concept-card">
-      <h3>👥 People (Team)</h3>
-      <p>Engineers, designers, salespeople, operations. A great idea with no team stays an idea forever.</p>
-    </div>
-    <div class="concept-card">
-      <h3>💰 Money (Funding)</h3>
-      <p>Investors give money in exchange for a share of the company. Called "equity." Zomato raised billions before it was profitable.</p>
-    </div>
-    <div class="concept-card">
-      <h3>⚙️ Technology</h3>
-      <p>The app, website, backend servers, algorithms — the tools that make the solution work at scale.</p>
-    </div>
-    <div class="concept-card">
-      <h3>📊 Business Model</h3>
-      <p>How does money come IN? Without this, it's a charity, not a company. Every company must answer this.</p>
-    </div>
-  </div>
-
-  <div class="block-nav">
-    <div></div>
-    <span class="progress-text">8 / 12</span>
-    <button class="nav-pill next" onclick="showBlock('zomato')">Next: Zomato Story →</button>
-  </div>
+  <div class="block-nav"><div></div><span class="progress-text">8 / 26</span><button class="nav-pill next orange-next" onclick="showBlock('zomato')">Next: Zomato Story →</button></div>
 </section>
-
-<!-- ====== BLOCK: ZOMATO ====== -->
+ 
+<!-- ZOMATO -->
 <section class="block" id="block-zomato">
-  <div class="block-header">
-    <div class="block-tag tag-day2">Day 2 · Case Study 1 · 35 mins</div>
-    <h1 class="block-title">🍕 Zomato — The Hungry Idea</h1>
-    <p class="block-subtitle">Started by scanning paper menus. Now delivers to millions daily.</p>
-    <div class="time-pill">⏱ 35 minutes</div>
-  </div>
-
-  <div class="thought-bubble">
-    <p>Deepinder Goyal, working at a consulting firm in 2008. The office cafeteria had <strong>paper menus.</strong> People wasted 10-15 minutes just deciding where to eat. He saw this every single day.</p>
-  </div>
-
-  <h3 style="font-family:'Syne',sans-serif; font-size:15px; margin:20px 0 14px; color:var(--orange);">📅 How Zomato Was Born</h3>
+  <div class="block-tag tag-d2">Day 2 · Case Study 1 · 35 mins</div>
+  <h1 class="block-title">🍕 Zomato — The Hungry Idea</h1>
+  <p class="block-subtitle">Started by scanning paper menus. Now delivers to millions daily.</p>
+  <div class="time-pill">⏱ 35 minutes</div>
+  <div class="thought-bubble"><p>Deepinder Goyal, working at a consulting firm in 2008. The office cafeteria had <strong>paper menus.</strong> People wasted 10-15 minutes just deciding where to eat. He saw this every single day.</p></div>
+  <h3 style="font-family:'Syne',sans-serif;font-size:14px;margin:18px 0 12px;color:var(--orange);">📅 How Zomato Was Born</h3>
   <div class="timeline">
-    <div class="tl-item"><div class="tl-dot"></div>
-      <div class="tl-year">2008</div>
-      <div class="tl-text">Deepinder scans paper menus and puts them on a website called <strong>"Foodiebay"</strong>. No delivery — just menus online. Colleagues loved it immediately.</div>
-    </div>
-    <div class="tl-item"><div class="tl-dot"></div>
-      <div class="tl-year">2010</div>
-      <div class="tl-text">Renamed to <strong>Zomato.</strong> Expanded from Delhi to Mumbai, Bengaluru, then more cities. Still just restaurant discovery — no delivery.</div>
-    </div>
-    <div class="tl-item"><div class="tl-dot"></div>
-      <div class="tl-year">2015</div>
-      <div class="tl-text">The <strong>big pivot</strong> — added food delivery. Built a fleet of delivery partners. This changed Zomato from a directory to a platform.</div>
-    </div>
-    <div class="tl-item"><div class="tl-dot"></div>
-      <div class="tl-year">2021</div>
-      <div class="tl-text">IPO — listed on stock market. Valued at <strong>₹60,000+ crore.</strong> A company that started with scanned menus.</div>
-    </div>
+    <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">2008</div><div class="tl-text">Deepinder scans paper menus and puts them on a website called <strong>"Foodiebay"</strong>. No delivery — just menus online. Colleagues loved it immediately.</div></div>
+    <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">2010</div><div class="tl-text">Renamed to <strong>Zomato.</strong> Expanded from Delhi to Mumbai, Bengaluru, then more cities. Still just restaurant discovery — no delivery.</div></div>
+    <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">2015</div><div class="tl-text">The <strong>big pivot</strong> — added food delivery. Built a fleet of delivery partners. This changed Zomato from a directory to a platform.</div></div>
+    <div class="tl-item"><div class="tl-dot"></div><div class="tl-year">2021</div><div class="tl-text">IPO — listed on stock market. Valued at <strong>₹60,000+ crore.</strong> A company that started with scanned menus.</div></div>
   </div>
-
-  <div id="zomato-demo">
-    <p style="font-size:13px; color:var(--muted); margin-bottom:16px;">What happens when you place a Zomato order? Click ▶ to walk through it:</p>
+  <div style="background:rgba(0,0,0,0.3);border:1px solid var(--border);border-radius:14px;padding:20px;margin:18px 0;">
+    <p style="font-size:12px;color:var(--muted);margin-bottom:14px;">What happens when you place a Zomato order? Click ▶ to walk through:</p>
     <div class="z-steps" id="z-steps">
       <div class="z-step" id="zs0"><div class="z-step-num">1</div><div><div class="z-step-title">You place the order</div><div class="z-step-desc">App sends request to Zomato's server with your location, restaurant, and items</div></div></div>
-      <div class="z-step" id="zs1"><div class="z-step-num">2</div><div><div class="z-step-title">Algorithm finds nearest delivery partner</div><div class="z-step-desc">Real-time GPS scan — assigns closest available partner within 500m of restaurant</div></div></div>
+      <div class="z-step" id="zs1"><div class="z-step-num">2</div><div><div class="z-step-title">Algorithm finds nearest delivery partner</div><div class="z-step-desc">Real-time GPS scan — assigns closest available partner within 500m</div></div></div>
       <div class="z-step" id="zs2"><div class="z-step-num">3</div><div><div class="z-step-title">Restaurant gets notification</div><div class="z-step-desc">Restaurant's tablet beeps — they start preparing. Prep time is tracked.</div></div></div>
-      <div class="z-step" id="zs3"><div class="z-step-num">4</div><div><div class="z-step-title">ETA is calculated live</div><div class="z-step-desc">Traffic data + prep time + distance = "Delivery in 28 mins" (updates every 30 seconds)</div></div></div>
-      <div class="z-step" id="zs4"><div class="z-step-num">5</div><div><div class="z-step-title">Delivery partner picks up & rides</div><div class="z-step-desc">GPS tracked live. If partner goes off route — system flags it automatically</div></div></div>
-      <div class="z-step" id="zs5"><div class="z-step-num">6</div><div><div class="z-step-title">Order delivered — payment settled</div><div class="z-step-desc">Zomato takes 18-25% commission from restaurant. You get a receipt. Partner gets paid.</div></div></div>
+      <div class="z-step" id="zs3"><div class="z-step-num">4</div><div><div class="z-step-title">ETA is calculated live</div><div class="z-step-desc">Traffic data + prep time + distance = "Delivery in 28 mins" (updates every 30s)</div></div></div>
+      <div class="z-step" id="zs4"><div class="z-step-num">5</div><div><div class="z-step-title">Delivery partner picks up &amp; rides</div><div class="z-step-desc">GPS tracked live. Off-route → system flags automatically</div></div></div>
+      <div class="z-step" id="zs5"><div class="z-step-num">6</div><div><div class="z-step-title">Order delivered — payment settled</div><div class="z-step-desc">Zomato takes 18-25% commission from restaurant. Partner gets paid.</div></div></div>
     </div>
-    <div style="text-align:center; margin-top:16px;">
-      <button class="run-btn" id="z-run-btn" onclick="runZomato()">▶ Walk Through Order</button>
-    </div>
+    <button class="run-btn orange-btn" id="z-btn" onclick="runZomato()">▶ Walk Through Order</button>
   </div>
-
-  <div class="activity-box">
-    <div class="activity-label">Ask the Class</div>
-    <div class="activity-q">"Why does Zomato charge more during rain or festivals?"</div>
-    <div class="activity-hint">Answer: Demand goes up (everyone wants delivery), supply goes down (fewer delivery partners willing to ride in rain). Algorithm increases price to attract more partners online. This is called Surge Pricing.</div>
-  </div>
-
-  <div class="block-nav">
-    <button class="nav-pill" onclick="showBlock('company-intro')">← Intro</button>
-    <span class="progress-text">9 / 12</span>
-    <button class="nav-pill next" onclick="showBlock('ola')">Next: Ola Story →</button>
-  </div>
+  <div class="activity-box"><div class="activity-label">Ask the Class</div><div class="activity-q">"Why does Zomato charge more during rain or festivals?"</div><div class="activity-hint">Demand goes up, supply goes down. Algorithm increases price to attract more delivery partners online. This is called Surge Pricing.</div></div>
+  <div class="block-nav"><button class="nav-pill" onclick="showBlock('compintro')">← Intro</button><span class="progress-text">9 / 26</span><button class="nav-pill next orange-next" onclick="showBlock('ola')">Next: Ola Story →</button></div>
 </section>
-
-<!-- ====== BLOCK: OLA ====== -->
+ 
+<!-- OLA -->
 <section class="block" id="block-ola">
-  <div class="block-header">
-    <div class="block-tag tag-day2">Day 2 · Case Study 2 · 25 mins</div>
-    <h1 class="block-title">🚕 Ola — Born from a Bad Cab Ride</h1>
-    <p class="block-subtitle">The founder was stranded on a highway. That became a billion-dollar company.</p>
-    <div class="time-pill">⏱ 25 minutes</div>
+  <div class="block-tag tag-d2">Day 2 · Case Study 2 · 25 mins</div>
+  <h1 class="block-title">🚕 Ola — Born from a Bad Cab Ride</h1>
+  <p class="block-subtitle">The founder was stranded on a highway. That became a billion-dollar company.</p>
+  <div class="time-pill">⏱ 25 minutes</div>
+  <div class="hook-box green-hook"><div class="hook-label" style="color:var(--green);">The Origin Story 👇</div><p class="hook-text">Bhavish Aggarwal booked a cab in 2010. The driver stopped midway, demanded extra money. Bhavish refused. <strong style="color:var(--green);">The driver left him stranded on the highway.</strong></p></div>
+  <div class="thought-bubble" style="background:rgba(6,214,160,0.06);border-color:rgba(6,214,160,0.2);"><p style="color:var(--white);">He didn't just get angry and move on. He asked: <strong style="color:var(--green);">"Why is this system so broken? Can I fix it?"</strong></p></div>
+  <div class="concept-card" style="margin:18px 0;"><h3>💡 The Insight</h3><p style="font-size:15px;line-height:1.7;">"What if cab booking was <strong style="color:var(--green)">standardized</strong> — fixed price before you book, GPS tracked the whole way, driver is accountable with ratings?"</p></div>
+  <div style="display:grid;gap:10px;margin-bottom:18px;">
+    <div style="display:flex;gap:14px;padding:13px 15px;background:var(--card);border-radius:10px;border:1px solid var(--border);"><span style="font-size:18px;">🛺</span><div><strong style="font-size:13px;">Added Auto-Rickshaws</strong><br><span style="font-size:12px;color:var(--muted);">Cabs were for the rich. Autos made Ola accessible to everyone — including Tier 2 and Tier 3 cities like ours.</span></div></div>
+    <div style="display:flex;gap:14px;padding:13px 15px;background:var(--card);border-radius:10px;border:1px solid var(--border);"><span style="font-size:18px;">💵</span><div><strong style="font-size:13px;">Cash Payments</strong><br><span style="font-size:12px;color:var(--muted);">Unlike Uber which was card-first, Ola allowed cash. In India, most people didn't have cards in 2011. This was a massive advantage.</span></div></div>
+    <div style="display:flex;gap:14px;padding:13px 15px;background:var(--card);border-radius:10px;border:1px solid var(--border);"><span style="font-size:18px;">🎁</span><div><strong style="font-size:13px;">Driver Incentives</strong><br><span style="font-size:12px;color:var(--muted);">Ola paid drivers bonuses to join. More drivers → shorter wait times → more users → more orders → platform grows.</span></div></div>
   </div>
-
-  <div class="hook-box" style="background:linear-gradient(135deg, rgba(6,214,160,0.1), rgba(0,212,255,0.05)); border-color:rgba(6,214,160,0.25);">
-    <div class="hook-label" style="color:var(--green);">The Origin Story 👇</div>
-    <p class="hook-text">Bhavish Aggarwal booked a cab in 2010. The driver stopped midway, demanded extra money. Bhavish refused. <strong>The driver left him stranded on the highway.</strong></p>
-  </div>
-
-  <div class="thought-bubble" style="background:rgba(6,214,160,0.06); border-color:rgba(6,214,160,0.2);">
-    <p style="color:var(--white);">He didn't just get angry and move on. He asked: <strong style="color:var(--green)">"Why is this system so broken? Can I fix it?"</strong></p>
-  </div>
-
-  <div class="concept-card" style="margin:20px 0;">
-    <h3>💡 The Insight</h3>
-    <p style="font-size:15px; line-height:1.7;">"What if cab booking was <strong style="color:var(--green)">standardized</strong> — fixed price before you book, GPS tracked the whole way, driver is accountable with ratings?"</p>
-  </div>
-
-  <h3 style="font-family:'Syne',sans-serif; font-size:15px; margin:20px 0 14px; color:var(--green);">🔧 What Made Ola Grow Fast</h3>
-  <div style="display:grid; gap:10px; margin-bottom:20px;">
-    <div style="display:flex; gap:14px; padding:14px 16px; background:var(--card); border-radius:10px; border:1px solid var(--border);">
-      <span style="font-size:20px;">🛺</span>
-      <div><strong style="font-size:14px;">Added Auto-Rickshaws</strong><br><span style="font-size:13px; color:var(--muted);">Cabs were for the rich. Autos made Ola accessible to everyone — including Tier 2 and Tier 3 cities like ours.</span></div>
-    </div>
-    <div style="display:flex; gap:14px; padding:14px 16px; background:var(--card); border-radius:10px; border:1px solid var(--border);">
-      <span style="font-size:20px;">💵</span>
-      <div><strong style="font-size:14px;">Cash Payments</strong><br><span style="font-size:13px; color:var(--muted);">Unlike Uber which was card-first, Ola allowed cash. In India, most people didn't have cards in 2011. This was a massive advantage.</span></div>
-    </div>
-    <div style="display:flex; gap:14px; padding:14px 16px; background:var(--card); border-radius:10px; border:1px solid var(--border);">
-      <span style="font-size:20px;">🎁</span>
-      <div><strong style="font-size:14px;">Driver Incentives</strong><br><span style="font-size:13px; color:var(--muted);">Ola paid drivers bonuses to join the platform. More drivers → shorter wait times → more users → more orders → platform grows.</span></div>
-    </div>
-  </div>
-
-  <div class="activity-box">
-    <div class="activity-label">Ask the Class</div>
-    <div class="activity-q">"Why does Ola's price go up on New Year's Eve at midnight?"</div>
-    <div class="activity-hint">Demand is extremely high, supply (available drivers) is low — many drivers have gone home. Algorithm increases price to attract more drivers to come online. This is the same surge pricing concept as Zomato. Now connect it: all platforms use this same logic.</div>
-  </div>
-
-  <div class="block-nav">
-    <button class="nav-pill" onclick="showBlock('zomato')">← Zomato</button>
-    <span class="progress-text">10 / 12</span>
-    <button class="nav-pill next" onclick="showBlock('uber')">Next: Uber vs Ola →</button>
-  </div>
+  <div class="block-nav"><button class="nav-pill" onclick="showBlock('zomato')">← Zomato</button><span class="progress-text">10 / 26</span><button class="nav-pill next orange-next" onclick="showBlock('uber')">Next: Uber vs Ola →</button></div>
 </section>
-
-<!-- ====== BLOCK: UBER ====== -->
+ 
+<!-- UBER -->
 <section class="block" id="block-uber">
-  <div class="block-header">
-    <div class="block-tag tag-day2">Day 2 · Case Study 3 · 20 mins</div>
-    <h1 class="block-title">🌍 Uber vs Ola</h1>
-    <p class="block-subtitle">Same idea. Different markets. Why local knowledge wins.</p>
-    <div class="time-pill">⏱ 20 minutes</div>
-  </div>
-
-  <div class="thought-bubble">
-    <p>Travis Kalanick was in Paris, 2008. Snowy night. <strong>Couldn't find a cab for an hour.</strong> He thought: "What if you could press a button and a car appears?" That became Uber.</p>
-  </div>
-
+  <div class="block-tag tag-d2">Day 2 · Case Study 3 · 20 mins</div>
+  <h1 class="block-title">🌍 Uber vs Ola</h1>
+  <p class="block-subtitle">Same idea. Different markets. Why local knowledge wins.</p>
+  <div class="time-pill">⏱ 20 minutes</div>
+  <div class="thought-bubble"><p>Travis Kalanick was in Paris, 2008. Snowy night. <strong>Couldn't find a cab for an hour.</strong> He thought: "What if you could press a button and a car appears?" That became Uber.</p></div>
   <table class="compare-table">
-    <thead>
-      <tr>
-        <th>Feature</th>
-        <th><span class="badge-uber">UBER</span></th>
-        <th><span class="badge-ola">OLA</span></th>
-      </tr>
-    </thead>
+    <thead><tr><th>Feature</th><th>UBER</th><th>OLA</th></tr></thead>
     <tbody>
       <tr><td>Founded</td><td>2009, San Francisco</td><td>2010, Mumbai</td></tr>
       <tr><td>Original market</td><td>USA — premium users</td><td>India — all classes</td></tr>
       <tr><td>Payment</td><td>Card only at first</td><td>Cash + card from day 1</td></tr>
       <tr><td>Vehicle types</td><td>Cars only initially</td><td>Cars + Autos + Bikes</td></tr>
-      <tr><td>Indian city knowledge</td><td>Had to learn & adapt</td><td>Built for India natively</td></tr>
+      <tr><td>Indian city knowledge</td><td>Had to learn &amp; adapt</td><td>Built for India natively</td></tr>
       <tr><td>Driver relations</td><td>Struggled in India</td><td>Deep driver network</td></tr>
     </tbody>
   </table>
-
-  <div class="concept-card" style="border-color:rgba(255,209,102,0.3); margin:20px 0;">
-    <h3 style="color:var(--yellow);">🏆 Key Lesson — Localization Wins</h3>
-    <p>Uber came to India with billions of dollars. Ola beat them in many cities — not because Ola had more money, but because <strong style="color:var(--yellow)">Ola understood the Indian customer better.</strong> Autos, cash, Hindi-speaking support, festivals pricing — all things Uber ignored initially.</p>
-  </div>
-
-  <div style="background:rgba(255,255,255,0.03); border:1px solid var(--border); border-radius:14px; padding:20px; margin:20px 0;">
-    <div style="font-family:'Syne',sans-serif; font-weight:700; font-size:14px; margin-bottom:14px;">📊 What both companies actually sell</div>
-    <p style="font-size:14px; color:var(--muted); line-height:1.7;">Neither Ola nor Uber owns a single car. They are <strong style="color:var(--white)">platforms</strong> — they connect drivers who have cars with passengers who need rides. They make money on every trip (15-25% commission). Their product is <strong style="color:var(--white)">trust and convenience</strong> — not transportation.</p>
-  </div>
-
-  <div class="activity-box">
-    <div class="activity-label">Think About This</div>
-    <div class="activity-q">"Zomato doesn't own a single restaurant. Ola doesn't own a single car. How are they worth thousands of crores?"</div>
-    <div class="activity-hint">They own something more valuable — the platform, the users, the data, and the trust. The network of restaurants/drivers is their real asset, even if they don't own them. This is the "platform economy."</div>
-  </div>
-
-  <div class="block-nav">
-    <button class="nav-pill" onclick="showBlock('ola')">← Ola</button>
-    <span class="progress-text">11 / 12</span>
-    <button class="nav-pill next" onclick="showBlock('ceomind')">Next: CEO Mindset →</button>
-  </div>
+  <div class="concept-card" style="border-color:rgba(255,209,102,0.3);margin:18px 0;"><h3 style="color:var(--yellow);">🏆 Key Lesson — Localization Wins</h3><p>Uber came to India with billions of dollars. Ola beat them in many cities — not because of money, but because <strong style="color:var(--yellow)">Ola understood the Indian customer better.</strong></p></div>
+  <div class="activity-box"><div class="activity-label">Think About This</div><div class="activity-q">"Zomato doesn't own a single restaurant. Ola doesn't own a single car. How are they worth thousands of crores?"</div><div class="activity-hint">They own the platform, users, data, and trust. The network is their real asset. This is the "platform economy."</div></div>
+  <div class="block-nav"><button class="nav-pill" onclick="showBlock('ola')">← Ola</button><span class="progress-text">11 / 26</span><button class="nav-pill next orange-next" onclick="showBlock('ceomind')">Next: CEO Mindset →</button></div>
 </section>
-
-<!-- ====== BLOCK: CEO MINDSET ====== -->
+ 
+<!-- CEO MINDSET -->
 <section class="block" id="block-ceomind">
-  <div class="block-header">
-    <div class="block-tag tag-day2">Day 2 · Closing · 10 mins</div>
-    <h1 class="block-title">The CEO Mindset</h1>
-    <p class="block-subtitle">3 principles every founder thinks about. Every day.</p>
-    <div class="time-pill">⏱ 10 minutes</div>
+  <div class="block-tag tag-d2">Day 2 · Closing · 10 mins</div>
+  <h1 class="block-title">The CEO Mindset</h1>
+  <p class="block-subtitle">3 principles every founder thinks about. Every day.</p>
+  <div class="time-pill">⏱ 10 minutes</div>
+  <div style="display:grid;gap:12px;margin:22px 0;">
+    <div style="display:flex;gap:16px;align-items:flex-start;padding:18px 20px;background:rgba(255,107,43,0.06);border:1px solid rgba(255,107,43,0.2);border-radius:14px;"><div style="font-family:'Syne',sans-serif;font-size:32px;font-weight:800;color:rgba(255,107,43,0.3);line-height:1;">01</div><div><div style="font-family:'Syne',sans-serif;font-weight:700;font-size:15px;margin-bottom:5px;">Problem first. Product second.</div><div style="font-size:13px;color:var(--muted);line-height:1.7;">Don't build an app and then find users. Find a real pain — then build the solution. Zomato found the pain (menu confusion). Ola found the pain (unreliable cabs).</div></div></div>
+    <div style="display:flex;gap:16px;align-items:flex-start;padding:18px 20px;background:rgba(0,212,255,0.06);border:1px solid rgba(0,212,255,0.2);border-radius:14px;"><div style="font-family:'Syne',sans-serif;font-size:32px;font-weight:800;color:rgba(0,212,255,0.3);line-height:1;">02</div><div><div style="font-family:'Syne',sans-serif;font-weight:700;font-size:15px;margin-bottom:5px;">Obsess over the user.</div><div style="font-size:13px;color:var(--muted);line-height:1.7;">Uber lost to Ola because Uber didn't understand the Indian user. Know your user better than they know themselves.</div></div></div>
+    <div style="display:flex;gap:16px;align-items:flex-start;padding:18px 20px;background:rgba(6,214,160,0.06);border:1px solid rgba(6,214,160,0.2);border-radius:14px;"><div style="font-family:'Syne',sans-serif;font-size:32px;font-weight:800;color:rgba(6,214,160,0.3);line-height:1;">03</div><div><div style="font-family:'Syne',sans-serif;font-weight:700;font-size:15px;margin-bottom:5px;">Fail fast. Fix fast.</div><div style="font-size:13px;color:var(--muted);line-height:1.7;">Zomato started with just menus in one office. Ola started in just Mumbai. Small start, fast learning, quick fixing. You don't need a perfect plan — you need to start, observe, and improve.</div></div></div>
   </div>
-
-  <div style="display:grid; gap:14px; margin:24px 0;">
-    <div style="display:flex; gap:18px; align-items:flex-start; padding:20px 22px; background:rgba(255,107,43,0.06); border:1px solid rgba(255,107,43,0.2); border-radius:14px;">
-      <div style="font-family:'Syne',sans-serif; font-size:36px; font-weight:800; color:rgba(255,107,43,0.3); line-height:1;">01</div>
-      <div>
-        <div style="font-family:'Syne',sans-serif; font-weight:700; font-size:16px; margin-bottom:6px;">Problem first. Product second.</div>
-        <div style="font-size:14px; color:var(--muted); line-height:1.7;">Don't build an app and then find users. Find a real pain that real people have — then build the solution. Zomato found the pain (menu confusion). Ola found the pain (unreliable cabs).</div>
-      </div>
-    </div>
-    <div style="display:flex; gap:18px; align-items:flex-start; padding:20px 22px; background:rgba(0,212,255,0.06); border:1px solid rgba(0,212,255,0.2); border-radius:14px;">
-      <div style="font-family:'Syne',sans-serif; font-size:36px; font-weight:800; color:rgba(0,212,255,0.3); line-height:1;">02</div>
-      <div>
-        <div style="font-family:'Syne',sans-serif; font-weight:700; font-size:16px; margin-bottom:6px;">Obsess over the user.</div>
-        <div style="font-size:14px; color:var(--muted); line-height:1.7;">Uber lost to Ola because Uber didn't understand the Indian user. Ola understood that Indians pay cash, ride autos, speak local languages, celebrate festivals. Know your user better than they know themselves.</div>
-      </div>
-    </div>
-    <div style="display:flex; gap:18px; align-items:flex-start; padding:20px 22px; background:rgba(6,214,160,0.06); border:1px solid rgba(6,214,160,0.2); border-radius:14px;">
-      <div style="font-family:'Syne',sans-serif; font-size:36px; font-weight:800; color:rgba(6,214,160,0.3); line-height:1;">03</div>
-      <div>
-        <div style="font-family:'Syne',sans-serif; font-weight:700; font-size:16px; margin-bottom:6px;">Fail fast. Fix fast.</div>
-        <div style="font-size:14px; color:var(--muted); line-height:1.7;">Zomato started with just menus in one office. Ola started in just Mumbai. Small start, fast learning, quick fixing. You don't need a perfect plan — you need to start, observe, and improve.</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="hook-box" style="background:linear-gradient(135deg, rgba(255,209,102,0.1), rgba(255,107,43,0.06)); border-color:rgba(255,209,102,0.25);">
-    <div class="hook-label" style="color:var(--yellow);">Final Question for the Class 👇</div>
-    <p class="hook-text">"What problem in your <strong>school, home, or neighbourhood</strong> do you see every single day — that nobody has solved yet?"</p>
-  </div>
-
-  <p style="color:var(--muted); font-size:13px; line-height:1.7; margin:12px 0 20px;">Give them 2 minutes to think silently. Then ask 3-4 students to share. Don't evaluate. Appreciate every answer. Some will have genuinely brilliant observations.</p>
-
-  <div class="block-nav">
-    <button class="nav-pill" onclick="showBlock('uber')">← Uber vs Ola</button>
-    <span class="progress-text">12 / 12</span>
-    <button class="nav-pill next" onclick="showBlock('d2activity')">Final Activity →</button>
-  </div>
+  <div class="hook-box yellow-hook"><div class="hook-label" style="color:var(--yellow);">Final Question for the Class 👇</div><p class="hook-text">"What problem in your <strong style="color:var(--orange);">school, home, or neighbourhood</strong> do you see every single day — that nobody has solved yet?"</p></div>
+  <div class="block-nav"><button class="nav-pill" onclick="showBlock('uber')">← Uber vs Ola</button><span class="progress-text">12 / 26</span><button class="nav-pill next orange-next" onclick="showBlock('d2act')">Final Activity →</button></div>
 </section>
-
-<!-- ====== BLOCK: D2 ACTIVITY ====== -->
-<section class="block" id="block-d2activity">
-  <div class="block-header">
-    <div class="block-tag tag-day2">Day 2 · Final Activity · 5 mins</div>
-    <h1 class="block-title">"If You Were CEO"</h1>
-    <p class="block-subtitle">Plant the seed of entrepreneurial thinking.</p>
-    <div class="time-pill">⏱ 5 minutes</div>
-  </div>
-
-  <div class="activity-box" style="margin:20px 0;">
-    <div class="activity-label">The Challenge</div>
-    <div class="activity-q">"You want to start a company that helps students in small towns like ours get access to good teachers online. What is your BIGGEST problem to solve first? And how would your app work?"</div>
-    <div class="activity-hint">Let 3-4 students share. No wrong answers. Encourage them to think about: How will teachers find students? How will money flow? What if internet is slow? How to build trust with parents?</div>
-  </div>
-
-  <div style="background:linear-gradient(135deg, rgba(26,111,255,0.1), rgba(0,212,255,0.06)); border:1px solid rgba(26,111,255,0.2); border-radius:14px; padding:24px; margin:20px 0;">
-    <div style="font-family:'Syne',sans-serif; font-size:15px; font-weight:700; margin-bottom:16px; color:var(--cyan);">✅ 2 Days Done — What changed in their thinking:</div>
-    <div style="display:grid; gap:8px;">
-      <div style="font-size:14px; color:var(--muted);">🧠 <strong style="color:var(--white)">Day 1:</strong> They now ask "HOW does this work?" instead of just using things blindly</div>
-      <div style="font-size:14px; color:var(--muted);">🏢 <strong style="color:var(--white)">Day 2:</strong> They understand companies are built to solve problems, not just to make money</div>
-      <div style="font-size:14px; color:var(--muted);">💡 <strong style="color:var(--white)">Combined:</strong> They see the world differently — every product has a story, every system has a backend, every company has a founder who once had a problem</div>
-    </div>
-  </div>
-
-  <div style="text-align:center; padding:30px; background:var(--card); border:1px solid var(--border); border-radius:16px; margin-top:24px;">
-    <div style="font-size:40px; margin-bottom:12px;">🎉</div>
-    <div style="font-family:'Syne',sans-serif; font-size:20px; font-weight:800; margin-bottom:8px;">Think Smart — Complete!</div>
-    <div style="color:var(--muted); font-size:14px; max-width:400px; margin:0 auto 20px;">Days 1 & 2 successfully delivered. Students are now thinkers, not just users.</div>
-    <div style="display:inline-block; background:linear-gradient(135deg,var(--blue),var(--cyan)); padding:12px 28px; border-radius:10px; font-family:'Syne',sans-serif; font-weight:700; font-size:14px;">
-      Hanominds Future Skills Bootcamp
-    </div>
-  </div>
-
-  <div class="block-nav">
-    <button class="nav-pill" onclick="showBlock('ceomind')">← CEO Mindset</button>
-    <span class="progress-text">🎯 All Done!</span>
-    <div></div>
-  </div>
+ 
+<!-- D2 ACTIVITY -->
+<section class="block" id="block-d2act">
+  <div class="block-tag tag-d2">Day 2 · Final Activity · 5 mins</div>
+  <h1 class="block-title">"If You Were CEO"</h1>
+  <p class="block-subtitle">Plant the seed of entrepreneurial thinking.</p>
+  <div class="time-pill">⏱ 5 minutes</div>
+  <div class="activity-box" style="margin:18px 0;"><div class="activity-label">The Challenge</div><div class="activity-q">"You want to start a company that helps students in small towns like ours get access to good teachers online. What is your BIGGEST problem to solve first? And how would your app work?"</div><div class="activity-hint">Think about: How will teachers find students? How will money flow? What if internet is slow? How to build trust with parents?</div></div>
+  <div class="takeaway-box"><div class="takeaway-label">✅ 2 Days Done</div><div class="takeaway-item"><strong style="color:var(--white)">Day 1:</strong> They now ask "HOW does this work?" instead of using things blindly</div><div class="takeaway-item"><strong style="color:var(--white)">Day 2:</strong> They understand companies are built to solve problems, not just to make money</div><div class="takeaway-item"><strong style="color:var(--white)">Combined:</strong> Every product has a story, every system has a backend, every company has a founder who once had a problem</div></div>
+  <div class="block-nav"><button class="nav-pill" onclick="showBlock('ceomind')">← CEO Mindset</button><span class="progress-text">13 / 26</span><button class="nav-pill next purple-next" onclick="showBlock('d3')">Day 3 →</button></div>
 </section>
-
+ 
+<!-- ===== DAY 3 ===== -->
+<section class="block" id="block-d3">
+  <div class="block-tag tag-d3">Day 3 · How Apps Really Work · Full Session</div>
+  <h1 class="block-title">An App Is a System,<br>Not Just a Screen.</h1>
+  <p class="block-subtitle">Behind every app, there is a system: user input, server, database, logic, response, and update.</p>
+  <div class="time-pill">⏱ Full Day Session</div>
+ 
+  <div class="hook-box purple-hook"><div class="hook-label" style="color:var(--purple);">Ask the Class 👇</div><p class="hook-text">"When you open Instagram and like a post, what really happens? <strong style="color:var(--purple);">Do you think the heart just becomes red and that's all?</strong>"</p></div>
+ 
+  <div class="script-box">
+    <div class="script-line">No.</div>
+    <div class="script-line emphasis">Your tap becomes a signal.</div>
+    <div class="script-line answer">That signal goes to Instagram's server.</div>
+    <div class="script-line answer">The server checks who you are.</div>
+    <div class="script-line answer">It updates the like count in the database.</div>
+    <div class="script-line answer">Then it sends the updated count back to your phone.</div>
+    <div class="script-line answer">Then your screen shows the new number.</div>
+    <div class="script-line" style="margin-top:10px;">So one small tap from your side causes <strong>many hidden steps.</strong></div>
+    <div class="script-line emphasis">That means apps are not random. Apps follow a process.</div>
+  </div>
+ 
+  <h3 style="font-family:'Syne',sans-serif;font-size:15px;margin:22px 0 12px;color:var(--purple);">Every App Has 5 Parts</h3>
+  <div class="five-part">
+    <div class="part-card"><div class="part-num" style="color:rgba(168,85,247,0.5);">01</div><div class="part-title">📥 Input</div><div class="part-desc">What does the user do? Click, type, upload, search, scroll, pay.</div></div>
+    <div class="part-card"><div class="part-num" style="color:rgba(0,212,255,0.5);">02</div><div class="part-title">⚙️ Processing</div><div class="part-desc">What decision should the system take?</div></div>
+    <div class="part-card"><div class="part-num" style="color:rgba(6,214,160,0.5);">03</div><div class="part-title">💾 Storage</div><div class="part-desc">Where is the information saved?</div></div>
+    <div class="part-card"><div class="part-num" style="color:rgba(255,209,102,0.5);">04</div><div class="part-title">📤 Output</div><div class="part-desc">What result is shown to the user?</div></div>
+    <div class="part-card" style="grid-column:1/-1;"><div class="part-num" style="color:rgba(255,107,43,0.5);">05</div><div class="part-title">🔄 Feedback Loop</div><div class="part-desc">Did it work? Should it update something else?</div></div>
+  </div>
+ 
+  <div class="concept-card" style="border-color:rgba(168,85,247,0.3);margin:18px 0;">
+    <h3 style="color:var(--purple);">🎥 YouTube Example — All 5 Parts</h3>
+    <p>You search <strong style="color:var(--white)">"cricket highlights"</strong> — that is <em style="color:var(--purple);">Input.</em> YouTube checks your request — that is <em style="color:var(--cyan);">Processing.</em> It finds matching videos from stored data — that is <em style="color:var(--green);">Storage.</em> It shows you results — that is <em style="color:var(--yellow);">Output.</em> Then it remembers what you watched — that is the <em style="color:var(--orange);">Feedback loop.</em></p>
+  </div>
+ 
+  <div class="thought-bubble" style="background:rgba(168,85,247,0.06);border-color:rgba(168,85,247,0.2);" ><p style="color:var(--white);">"Stop seeing apps as entertainment only. Start seeing apps as <strong style="color:var(--purple);">systems.</strong> The students who understand systems today will understand coding much more easily tomorrow. Because coding is nothing but telling a system: If this happens, do this. Then save this. Then show this."</p></div>
+ 
+  <div class="activity-box purple-act"><div class="activity-label purple-lbl">Class Activity — Break an App into 5 Parts</div><div class="activity-q">Ask students to pick one app they use daily and answer all 5 questions for it.</div><div class="activity-hint">Pick 3 students. Let them explain with WhatsApp, YouTube, or Google Maps. Input → Processing → Storage → Output → Feedback. Do not correct — let them think it through.</div></div>
+ 
+  <div class="takeaway-box"><div class="takeaway-label">✅ Day 3 Key Takeaways</div><div class="takeaway-item">An app is a system, not just a screen</div><div class="takeaway-item">Every app has input, processing, storage, output, and feedback</div><div class="takeaway-item">Hidden logic is what makes digital products powerful</div><div class="takeaway-item">Understanding systems is the first step toward coding</div></div>
+ 
+  <div class="hw-box"><div class="hw-label">📌 Homework / Observation Task</div><div class="hw-item">Open any 3 apps at home and write: what action you performed and what hidden steps might have happened behind it</div></div>
+  <div class="connect-box"><div class="connect-label">→ How This Connects to Day 4</div><div class="connect-text">Today students saw that apps follow systems. Tomorrow they will learn that systems work well only when instructions are clear and in sequence. That leads naturally into algorithm thinking.</div></div>
+  <div class="block-nav"><button class="nav-pill" onclick="showBlock('d2act')">← Day 2</button><span class="progress-text">14 / 26</span><button class="nav-pill next teal-next" onclick="showBlock('d4')">Day 4 →</button></div>
+</section>
+ 
+<!-- ===== DAY 4 ===== -->
+<section class="block" id="block-d4">
+  <div class="block-tag tag-d4">Day 4 · Step-by-Step Thinking · Full Session</div>
+  <h1 class="block-title">Step-by-Step Thinking:<br>The Power of Sequence</h1>
+  <p class="block-subtitle">Technology works because instructions are given in the correct order. Machines cannot guess.</p>
+  <div class="time-pill">⏱ Full Day Session</div>
+ 
+  <div class="hook-box teal-hook"><div class="hook-label" style="color:var(--teal);">Start With This 👇</div><p class="hook-text">"If I say, <strong style="color:var(--teal);">'Make tea,'</strong> can a machine do it? Not unless I give exact steps."</p></div>
+ 
+  <div class="script-box">
+    <div class="script-line answer">Boil water. Add tea powder. Add milk. Add sugar. Wait. Filter. Pour.</div>
+    <div class="script-line" style="margin-top:10px;"><strong>Machines do not understand "make tea." Machines understand steps.</strong></div>
+    <div class="script-line emphasis">Humans can guess. Machines cannot.</div>
+    <div class="script-line" style="margin-top:8px;">If your mother says, "Bring that thing from there," you may still understand. But a computer will not. A computer needs <strong>exact instruction.</strong></div>
+  </div>
+ 
+  <h3 style="font-family:'Syne',sans-serif;font-size:15px;margin:22px 0 12px;color:var(--teal);">📱 Login to a School App — In Exact Steps</h3>
+  <div class="wf-steps">
+    <div class="wf-step"><div class="wf-num" style="color:rgba(20,184,166,0.5);">1</div><div class="wf-body"><div class="wf-title">Open app</div></div></div>
+    <div class="wf-step"><div class="wf-num" style="color:rgba(20,184,166,0.5);">2</div><div class="wf-body"><div class="wf-title">Enter mobile number</div></div></div>
+    <div class="wf-step"><div class="wf-num" style="color:rgba(20,184,166,0.5);">3</div><div class="wf-body"><div class="wf-title">Enter password</div></div></div>
+    <div class="wf-step"><div class="wf-num" style="color:rgba(20,184,166,0.5);">4</div><div class="wf-body"><div class="wf-title">Click login</div></div></div>
+    <div class="wf-step"><div class="wf-num" style="color:rgba(20,184,166,0.5);">5</div><div class="wf-body"><div class="wf-title">System checks details</div></div></div>
+    <div class="wf-step"><div class="wf-num" style="color:rgba(20,184,166,0.5);">6</div><div class="wf-body"><div class="wf-title">If correct → open dashboard</div><div class="wf-desc">If step 5 comes before step 2 — it will not work. Sequence matters.</div></div></div>
+    <div class="wf-step"><div class="wf-num" style="color:rgba(20,184,166,0.5);">7</div><div class="wf-body"><div class="wf-title">If wrong → show error message</div></div></div>
+  </div>
+ 
+  <div class="thought-bubble" style="background:rgba(20,184,166,0.06);border-color:rgba(20,184,166,0.2);"><p style="color:var(--white);">"In life, sequence matters. In studies, sequence matters. In business, sequence matters. In technology especially, <strong style="color:var(--teal);">sequence matters a lot.</strong>"</p></div>
+ 
+  <div class="activity-box teal-act"><div class="activity-label teal-lbl">Activity — Give Instructions to a Robot</div><div class="activity-q">Ask one student to act like a robot. Another student gives step-by-step instructions for: opening a notebook, wearing a school bag, or drinking water.</div><div class="activity-hint">If instructions are unclear, the "robot" does the wrong thing. This becomes fun and memorable. The point: without clear sequence, nothing works correctly.</div></div>
+ 
+  <div class="takeaway-box"><div class="takeaway-label">✅ Day 4 Key Takeaways</div><div class="takeaway-item">Computers need exact steps</div><div class="takeaway-item">Sequence matters in technology</div><div class="takeaway-item">Clear thinking is the foundation of coding</div><div class="takeaway-item">Good instructions reduce mistakes</div></div>
+ 
+  <div class="hw-box"><div class="hw-label">📌 Homework</div><div class="hw-item">Write step-by-step instructions for one daily task: brushing teeth, wearing school uniform, using an ATM, or sending a WhatsApp message</div></div>
+  <div class="connect-box"><div class="connect-label">→ How This Connects to Day 5</div><div class="connect-text">Once students understand sequence, the next step is decision-making. Tomorrow they will learn that systems do not just follow steps — they also choose between different paths.</div></div>
+  <div class="block-nav"><button class="nav-pill" onclick="showBlock('d3')">← Day 3</button><span class="progress-text">15 / 26</span><button class="nav-pill next green-next" onclick="showBlock('d5')">Day 5 →</button></div>
+</section>
+ 
+<!-- ===== DAY 5 ===== -->
+<section class="block" id="block-d5">
+  <div class="block-tag tag-d5">Day 5 · How Systems Make Decisions · Full Session</div>
+  <h1 class="block-title">How Systems Make Decisions</h1>
+  <p class="block-subtitle">If this happens, do this. Otherwise, do something else. This is the foundation of all logic.</p>
+  <div class="time-pill">⏱ Full Day Session</div>
+ 
+  <div class="hook-box green-hook"><div class="hook-label" style="color:var(--green);">Core Idea 👇</div><p class="hook-text">"Life is not always one straight road. Sometimes a system must decide. <strong style="color:var(--green);">If password is correct, open account. If password is wrong, show error.</strong>"</p></div>
+ 
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:18px 0;">
+    <div class="concept-card" style="border-color:rgba(6,214,160,0.3);"><h3 style="color:var(--green);">🚦 Traffic Signal Logic</h3><p>If timer becomes zero → switch light. If ambulance detected → maybe override signal. If road is empty → in smart systems, timing may reduce. Even machines make decisions based on rules.</p></div>
+    <div class="concept-card" style="border-color:rgba(6,214,160,0.3);"><h3 style="color:var(--green);">📺 YouTube Recommendations</h3><p>If you watch cricket videos often → recommends more sports. If you stop watching a channel → slowly reduces those suggestions. Systems check conditions constantly.</p></div>
+    <div class="concept-card" style="border-color:rgba(6,214,160,0.3);"><h3 style="color:var(--green);">🔐 Phone Face Unlock</h3><p>If face matches → unlock. If face does not match → stay locked. Simple. Powerful. Logical.</p></div>
+    <div class="concept-card" style="border-color:rgba(6,214,160,0.3);"><h3 style="color:var(--green);">🏫 School Attendance Software</h3><p>If student is present → mark P. If absent → mark A. If fee not paid → show pending. If marks are below cutoff → send alert.</p></div>
+  </div>
+ 
+  <div class="thought-bubble" style="background:rgba(6,214,160,0.06);border-color:rgba(6,214,160,0.2);"><p style="color:var(--white);">"You should begin asking: <strong style="color:var(--green);">What is the rule here? What happens if the rule is true? What happens if it is false?</strong> This thinking is very powerful. Because most digital products are built on conditions."</p></div>
+ 
+  <div class="activity-box green-act"><div class="activity-label green-lbl">Activity — If This, Then That</div><div class="activity-q">Give students these situations and ask them to answer both possibilities:</div><div class="activity-hint">• If it rains, what happens in food delivery pricing?<br>• If payment fails, what should the app show?<br>• If internet is slow, what should YouTube do?<br>Ask them to write: If [this], then [that]. Otherwise [what].</div></div>
+ 
+  <div class="takeaway-box"><div class="takeaway-label">✅ Day 5 Key Takeaways</div><div class="takeaway-item">Systems follow rules</div><div class="takeaway-item">Decision-making is based on conditions</div><div class="takeaway-item">"If this, then that" is a major technology principle</div><div class="takeaway-item">Logic begins with simple conditions</div></div>
+ 
+  <div class="hw-box"><div class="hw-label">📌 Homework</div><div class="hw-item">Write 5 daily-life examples of: If [something] happens → what is the result? Example: If battery is low → phone shows warning.</div></div>
+  <div class="connect-box"><div class="connect-label">→ How This Connects to Day 6</div><div class="connect-text">Today students learned about conditions. Tomorrow they will see how companies and apps use data to make decisions instead of guessing.</div></div>
+  <div class="block-nav"><button class="nav-pill" onclick="showBlock('d4')">← Day 4</button><span class="progress-text">16 / 26</span><button class="nav-pill next yellow-next" onclick="showBlock('d6')">Day 6 →</button></div>
+</section>
+ 
+<!-- ===== DAY 6 ===== -->
+<section class="block" id="block-d6">
+  <div class="block-tag tag-d6">Day 6 · Data · Full Session</div>
+  <h1 class="block-title">Data: The Thing Companies<br>Watch All the Time</h1>
+  <p class="block-subtitle">Big companies do not guess. They measure. Data is simply recorded information — and it changes everything.</p>
+  <div class="time-pill">⏱ Full Day Session</div>
+ 
+  <div class="hook-box yellow-hook"><div class="hook-label" style="color:var(--yellow);">Big Truth 👇</div><p class="hook-text">"How does YouTube know which video is doing well? How does Zomato know which restaurant is popular? How does Instagram know what to show first? <strong style="color:var(--yellow);">Because of data.</strong>"</p></div>
+ 
+  <div class="script-box">
+    <div class="script-line">Without data, people say: <em>"I feel this is good." "I think this will work." "Maybe students like this."</em></div>
+    <div class="script-line emphasis">With data, they say:</div>
+    <div class="script-line answer">"This worked better." "This had more clicks." "This time more people completed payment."</div>
+    <div class="script-line" style="margin-top:10px;">Data is not only for companies. <strong>Your life also has data.</strong></div>
+    <div class="script-line answer">Your marks are data. Your screen time is data. Your sleep timing is data. Your expenses are data.</div>
+    <div class="script-line emphasis">When you start recording reality, you stop living blindly.</div>
+  </div>
+ 
+  <div class="concept-card" style="border-color:rgba(255,209,102,0.3);margin:18px 0;">
+    <h3 style="color:var(--yellow);">🍕 What Data Does Zomato Track?</h3>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px;">
+      <div style="font-size:12px;color:var(--muted);display:flex;gap:8px;"><span style="color:var(--yellow);">•</span>Order time</div>
+      <div style="font-size:12px;color:var(--muted);display:flex;gap:8px;"><span style="color:var(--yellow);">•</span>Delivery time</div>
+      <div style="font-size:12px;color:var(--muted);display:flex;gap:8px;"><span style="color:var(--yellow);">•</span>Area &amp; location</div>
+      <div style="font-size:12px;color:var(--muted);display:flex;gap:8px;"><span style="color:var(--yellow);">•</span>Restaurant rating</div>
+      <div style="font-size:12px;color:var(--muted);display:flex;gap:8px;"><span style="color:var(--yellow);">•</span>Cancellation rate</div>
+      <div style="font-size:12px;color:var(--muted);display:flex;gap:8px;"><span style="color:var(--yellow);">•</span>Peak time patterns</div>
+      <div style="font-size:12px;color:var(--muted);display:flex;gap:8px;"><span style="color:var(--yellow);">•</span>Rain impact</div>
+      <div style="font-size:12px;color:var(--muted);display:flex;gap:8px;"><span style="color:var(--yellow);">•</span>Customer preferences</div>
+    </div>
+    <p style="margin-top:12px;">Using this data, they improve delivery speed, pricing, and customer experience. <strong style="color:var(--yellow)">Technology becomes smarter when data is collected and used properly.</strong></p>
+  </div>
+ 
+  <div class="activity-box"><div class="activity-label">Activity — What Data Exists Here?</div><div class="activity-q">Ask students to look around the classroom and identify possible data points.</div><div class="activity-hint">Expected: attendance, bench row number, marks, notebook submissions, test scores, arrival time. Help them see that data is everywhere — not just in computers.</div></div>
+ 
+  <div class="takeaway-box"><div class="takeaway-label">✅ Day 6 Key Takeaways</div><div class="takeaway-item">Data means recorded information</div><div class="takeaway-item">Companies use data to make decisions</div><div class="takeaway-item">Data helps reduce guessing</div><div class="takeaway-item">Even daily life can be improved using data</div></div>
+ 
+  <div class="hw-box"><div class="hw-label">📌 Homework</div><div class="hw-item">Track one thing for one full day: screen time, water intake, time spent studying, or number of times phone unlocked. Write what you observed.</div></div>
+  <div class="connect-box"><div class="connect-label">→ How This Connects to Day 7</div><div class="connect-text">Now that students know what data is, tomorrow they will learn how to organize data clearly using tables, rows, columns, and basic spreadsheet thinking.</div></div>
+  <div class="block-nav"><button class="nav-pill" onclick="showBlock('d5')">← Day 5</button><span class="progress-text">17 / 26</span><button class="nav-pill next pink-next" onclick="showBlock('d7')">Day 7 →</button></div>
+</section>
+ 
+<!-- ===== DAY 7 ===== -->
+<section class="block" id="block-d7">
+  <div class="block-tag tag-d7">Day 7 · Excel Thinking · Full Session</div>
+  <h1 class="block-title">Organizing Information<br>Like Smart People</h1>
+  <p class="block-subtitle">Messy data is almost useless. Spreadsheet thinking means one row = one record, one column = one type of information.</p>
+  <div class="time-pill">⏱ Full Day Session</div>
+ 
+  <div class="hook-box" style="background:linear-gradient(135deg,rgba(255,77,166,0.1),rgba(168,85,247,0.05));border-color:rgba(255,77,166,0.25);">
+    <div style="height:2px;background:linear-gradient(90deg,var(--pink),var(--purple));position:absolute;top:0;left:0;right:0;"></div>
+    <div class="hook-label" style="color:var(--pink);">The Problem 👇</div>
+    <p class="hook-text">"If I ask you: show me all students who came late today — and you wrote attendance like this: <strong style="color:var(--pink);">Ravi came late. Sita present. Mohan absent. Arjun came 9:15. Priya yes.</strong> No dates. No format. No order. Can we understand it? Very difficult."</p>
+  </div>
+ 
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:20px 0;align-items:start;">
+    <div><div style="font-size:11px;color:var(--red);font-weight:600;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:10px;">❌ Messy — Hard to use</div><div style="background:rgba(244,63,94,0.05);border:1px solid rgba(244,63,94,0.2);border-radius:10px;padding:14px 16px;font-size:13px;color:var(--muted);line-height:2;">Ravi came late.<br>Sita present.<br>Mohan absent.<br>Arjun came 9:15.<br>Priya yes.</div></div>
+    <div><div style="font-size:11px;color:var(--green);font-weight:600;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:10px;">✅ Structured — Easy to use</div><table class="compare-table" style="margin:0;"><thead><tr><th>Name</th><th>Class</th><th>Status</th><th>Time</th></tr></thead><tbody><tr><td>Ravi</td><td>8</td><td style="color:#f87171;">Late</td><td>9:15</td></tr><tr><td>Sita</td><td>7</td><td style="color:var(--green);">Present</td><td>9:00</td></tr><tr><td>Mohan</td><td>8</td><td style="color:var(--muted);">Absent</td><td>—</td></tr></tbody></table></div>
+  </div>
+ 
+  <div class="thought-bubble" style="background:rgba(255,77,166,0.06);border-color:rgba(255,77,166,0.2);"><p style="color:var(--white);">"When you learn Excel or tables, do not think it is boring office work. It is actually <strong style="color:var(--pink);">training your mind to become organized.</strong> Organized mind. Organized data. Better decisions."</p></div>
+ 
+  <div class="activity-box"><div class="activity-label">Activity — Make a Mini Table</div><div class="activity-q">Give students raw information and ask them to structure it into proper columns.</div><div class="activity-hint">Raw data: Ravi, Class 8, absent / Sita, Class 7, present / Arjun, Class 8, present / Priya, Class 6, absent. Ask them to turn it into a proper Name | Class | Status table with clean rows.</div></div>
+ 
+  <div class="takeaway-box"><div class="takeaway-label">✅ Day 7 Key Takeaways</div><div class="takeaway-item">Data must be organized properly</div><div class="takeaway-item">Rows and columns create clarity</div><div class="takeaway-item">Structured information is easier to use and act on</div><div class="takeaway-item">Spreadsheet thinking is part of digital thinking</div></div>
+ 
+  <div class="hw-box"><div class="hw-label">📌 Homework</div><div class="hw-item">Create a small hand-written table for: family expenses, your weekly study time, your friends' favorite subjects, or your class attendance for 3 days</div></div>
+  <div class="connect-box"><div class="connect-label">→ How This Connects to Day 8</div><div class="connect-text">Today students learned to organize information. Tomorrow they will learn that once information is organized, it can be used to communicate clearly through documents and presentations.</div></div>
+  <div class="block-nav"><button class="nav-pill" onclick="showBlock('d6')">← Day 6</button><span class="progress-text">18 / 26</span><button class="nav-pill next cyan-next" onclick="showBlock('d8')">Day 8 →</button></div>
+</section>
+ 
+<!-- ===== DAY 8 ===== -->
+<section class="block" id="block-d8">
+  <div class="block-tag tag-d8">Day 8 · Communication · Full Session</div>
+  <h1 class="block-title">From Information<br>to Communication</h1>
+  <p class="block-subtitle">Knowing something is one skill. Explaining it clearly is another. Both are essential in technology work.</p>
+  <div class="time-pill">⏱ Full Day Session</div>
+ 
+  <div class="hook-box"><div class="hook-label">Honest Question 👇</div><p class="hook-text">"If you have a <strong>brilliant idea in your mind</strong> but you cannot explain it properly — what happens? Most people will never understand your value."</p></div>
+ 
+  <div class="script-box">
+    <div class="script-line">In technology and companies, people do not only build. They also <strong>explain.</strong></div>
+    <div class="script-line answer">Engineers explain updates. Founders explain ideas to investors.</div>
+    <div class="script-line answer">Teachers explain lessons. Students explain projects. Teams write reports.</div>
+    <div class="script-line" style="margin-top:10px;">That means: <strong>first understand → then organize → then communicate.</strong></div>
+    <div class="script-line emphasis">This is how professionals work.</div>
+  </div>
+ 
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:18px 0;">
+    <div class="concept-card" style="border-color:rgba(0,212,255,0.3);"><h3 style="color:var(--cyan);">📄 What Makes a Good Document?</h3><p>Clear title. Clean points. Simple language. No confusion. The reader should understand without asking you follow-up questions.</p></div>
+    <div class="concept-card" style="border-color:rgba(0,212,255,0.3);"><h3 style="color:var(--cyan);">📊 What Makes a Good Presentation?</h3><p>Less text. Clear idea. Examples. Confidence while speaking. A PPT is not a book — each slide should carry one key idea only.</p></div>
+  </div>
+ 
+  <div class="thought-bubble" style="background:rgba(0,212,255,0.06);border-color:rgba(0,212,255,0.2);"><p style="color:var(--white);">"A person who can think clearly and explain clearly becomes valuable everywhere. Communication is not showing off. <strong style="color:var(--cyan);">Communication is helping others understand.</strong>"</p></div>
+ 
+  <div class="activity-box"><div class="activity-label">Activity — Explain in 30 Seconds</div><div class="activity-q">Give each student one topic. Ask them to explain it simply in 30 seconds — no big English words needed.</div><div class="activity-hint">Topics: How ATM works / How Zomato works / What is data / Why structure matters / What is an app system. Goal: clarity and confidence, not perfection.</div></div>
+ 
+  <div class="takeaway-box"><div class="takeaway-label">✅ Day 8 Key Takeaways</div><div class="takeaway-item">Clear communication increases value</div><div class="takeaway-item">Documents and presentations are part of real work</div><div class="takeaway-item">Good explanation needs clarity, not complex English</div><div class="takeaway-item">Confidence grows when ideas are expressed simply</div></div>
+ 
+  <div class="hw-box"><div class="hw-label">📌 Homework</div><div class="hw-item">Write a 5-line explanation of one topic learned so far: internet, company, app, data, or spreadsheet</div></div>
+  <div class="connect-box"><div class="connect-label">→ How This Connects to Day 9</div><div class="connect-text">Now that students understand communication, the next step is using the internet smartly. Tomorrow they will learn that the internet is powerful only when used with purpose, awareness, and responsibility.</div></div>
+  <div class="block-nav"><button class="nav-pill" onclick="showBlock('d7')">← Day 7</button><span class="progress-text">19 / 26</span><button class="nav-pill next red-next" onclick="showBlock('d9')">Day 9 →</button></div>
+</section>
+ 
+<!-- ===== DAY 9 ===== -->
+<section class="block" id="block-d9">
+  <div class="block-tag tag-d9">Day 9 · Smart Internet Usage · Full Session</div>
+  <h1 class="block-title">Using the Internet Smartly,<br>Not Blindly</h1>
+  <p class="block-subtitle">Scrolling is not research. Forwarded messages are not facts. Using internet is not equal to learning from internet.</p>
+  <div class="time-pill">⏱ Full Day Session</div>
+ 
+  <div class="hook-box red-hook"><div class="hook-label" style="color:var(--red);">Important Distinction 👇</div><p class="hook-text">"Most students use the internet every day. But very few use it smartly. <strong style="color:var(--red);">Using internet is not equal to learning from internet.</strong>"</p></div>
+ 
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:18px 0;">
+    <div class="concept-card" style="border-color:rgba(6,214,160,0.3);"><h3 style="color:var(--green);">✅ Internet CAN Help You</h3><p>Learn skills, watch explanations, compare products, search information, find opportunities, discover careers, build knowledge.</p></div>
+    <div class="concept-card" style="border-color:rgba(244,63,94,0.3);"><h3 style="color:var(--red);">❌ Without Direction, It Wastes Time</h3><p>Scrolling random content. Sharing unverified forwards. Watching videos without purpose. Screen time that builds nothing.</p></div>
+  </div>
+ 
+  <div class="script-box">
+    <div class="script-line emphasis">Before opening the internet, ask:</div>
+    <div class="script-line answer">Why am I opening this?</div>
+    <div class="script-line answer">What do I want to find?</div>
+    <div class="script-line answer">How will I know this is correct?</div>
+    <div class="script-line" style="margin-top:10px;">This is <strong>digital maturity.</strong></div>
+    <div class="script-line" style="margin-top:8px;">Suppose you search: "Best way to improve memory." You will find many videos. But are all correct? <strong>No.</strong></div>
+    <div class="script-line answer">Some people want views. Some want to sell products. Some give half knowledge.</div>
+    <div class="script-line emphasis">Smart students check: Who is saying this? Is it reliable? Do multiple sources say the same thing?</div>
+  </div>
+ 
+  <div class="concept-card" style="border-color:rgba(244,63,94,0.3);margin:18px 0;"><h3 style="color:var(--red);">🛡️ Digital Safety — Non-Negotiable Rules</h3><div style="display:grid;gap:6px;margin-top:8px;"><div style="font-size:13px;color:var(--muted);display:flex;gap:10px;"><span style="color:var(--red);">✗</span>Do not share OTP with anyone</div><div style="font-size:13px;color:var(--muted);display:flex;gap:10px;"><span style="color:var(--red);">✗</span>Do not click random links in messages</div><div style="font-size:13px;color:var(--muted);display:flex;gap:10px;"><span style="color:var(--red);">✗</span>Do not trust every screenshot or forwarded message</div><div style="font-size:13px;color:var(--muted);display:flex;gap:10px;"><span style="color:var(--red);">✗</span>Do not post everything publicly</div><div style="font-size:13px;color:var(--muted);display:flex;gap:10px;"><span style="color:var(--red);">✗</span>Do not use the same weak password everywhere</div></div></div>
+ 
+  <div class="thought-bubble" style="background:rgba(244,63,94,0.06);border-color:rgba(244,63,94,0.2);"><p style="color:var(--white);">"Technology gives power. But without awareness, power becomes risk. From today, I want you to become <strong style="color:var(--red);">responsible users.</strong> Not scared. Not addicted. Aware."</p></div>
+ 
+  <div class="activity-box red-act"><div class="activity-label red-lbl">Activity — Useful vs Wasteful vs Risky</div><div class="activity-q">Say different activities and ask students to classify each one.</div><div class="activity-hint">Searching maths solution → Useful. Watching 2 hours of random reels → Wasteful. Clicking unknown prize links → Risky. Learning Canva from YouTube → Useful. Sharing OTP to "bank staff" → Dangerous. Let students debate and explain their reasoning.</div></div>
+ 
+  <div class="takeaway-box"><div class="takeaway-label">✅ Day 9 Key Takeaways</div><div class="takeaway-item">Internet can educate or distract — the choice is yours</div><div class="takeaway-item">Smart search needs purpose and verification</div><div class="takeaway-item">Digital safety is essential, not optional</div><div class="takeaway-item">Awareness makes technology useful</div></div>
+ 
+  <div class="hw-box"><div class="hw-label">📌 Homework</div><div class="hw-item">Use the internet for one useful purpose today and note: what you searched, what you learned, and how you checked if it was reliable</div></div>
+  <div class="connect-box"><div class="connect-label">→ How This Connects to Day 10</div><div class="connect-text">Today students learned smart digital usage. Tomorrow they will move one level higher: how AI is changing the way people search, create, and work.</div></div>
+  <div class="block-nav"><button class="nav-pill" onclick="showBlock('d8')">← Day 8</button><span class="progress-text">20 / 26</span><button class="nav-pill next purple-next" onclick="showBlock('d10')">Day 10 →</button></div>
+</section>
+ 
+<!-- ===== DAY 10 ===== -->
+<section class="block" id="block-d10">
+  <div class="block-tag tag-d10">Day 10 · AI Awareness · Full Session</div>
+  <h1 class="block-title">AI Is a Tool,<br>Not Magic</h1>
+  <p class="block-subtitle">Some people think AI is magic. Some think it will replace everyone. Some use it blindly. All three are dangerous.</p>
+  <div class="time-pill">⏱ Full Day Session</div>
+ 
+  <div class="hook-box purple-hook"><div class="hook-label" style="color:var(--purple);">Three Wrong Ideas 👇</div><p class="hook-text">"Some people think AI is magic. Some think AI will replace everyone. Some use it blindly. <strong style="color:var(--purple);">All three are dangerous. Let us understand it properly.</strong>"</p></div>
+ 
+  <div class="script-box">
+    <div class="script-line"><strong>AI means systems that can perform tasks that look intelligent.</strong></div>
+    <div class="script-line answer">Answering questions. Recognizing faces. Suggesting videos. Translating language. Predicting what you may want next.</div>
+    <div class="script-line" style="margin-top:10px;">But <strong>AI is still a tool.</strong></div>
+    <div class="script-line answer">If the user gives poor input → output may be poor.</div>
+    <div class="script-line answer">If the data is wrong → AI can mislead.</div>
+    <div class="script-line answer">If you use it lazily → your thinking becomes weak.</div>
+    <div class="script-line emphasis">Use AI as an assistant, not as a brain replacement.</div>
+  </div>
+ 
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:18px 0;">
+    <div class="concept-card" style="border-color:rgba(168,85,247,0.3);"><h3 style="color:var(--purple);">😴 Weak Student Uses AI Like This</h3><p>"Give answer."<br>That's all. No thinking involved. Result: The student learns nothing and becomes dependent.</p></div>
+    <div class="concept-card" style="border-color:rgba(6,214,160,0.3);"><h3 style="color:var(--green);">🧠 Smart Student Uses AI Like This</h3><p>"Explain in simple language." "Give me an example." "Compare both options." "Turn this into steps." "Check mistakes in my work." "Help me understand, not just answer."</p></div>
+  </div>
+ 
+  <div class="thought-bubble" style="background:rgba(168,85,247,0.06);border-color:rgba(168,85,247,0.2);"><p style="color:var(--white);">"AI becomes more useful when your questions become better. The future will not only belong to those who know AI. It will belong to those who know <strong style="color:var(--purple);">how to think with AI.</strong>"</p></div>
+ 
+  <div class="activity-box purple-act"><div class="activity-label purple-lbl">Activity — Good Prompt vs Bad Prompt</div><div class="activity-q">Give one topic like "solar system" or "Zomato." Ask students: what is a weak question? What is a smart question?</div><div class="activity-hint">Weak: "Tell me about Zomato." Smart: "Explain in 3 steps how Zomato makes money, like I am 12 years old." Discuss why the second gets a better, more useful response.</div></div>
+ 
+  <div class="takeaway-box"><div class="takeaway-label">✅ Day 10 Key Takeaways</div><div class="takeaway-item">AI is a tool, not magic or a threat</div><div class="takeaway-item">AI is already part of daily life — YouTube, Maps, face unlock, spam filters</div><div class="takeaway-item">Better questions create better results from AI</div><div class="takeaway-item">Human thinking is still essential</div></div>
+ 
+  <div class="hw-box"><div class="hw-label">📌 Homework</div><div class="hw-item">Write one weak question and one improved smart question for any topic you are curious about. Think: what would make the answer more useful?</div></div>
+  <div class="connect-box"><div class="connect-label">→ How This Connects to Day 11</div><div class="connect-text">Students now understand AI as a practical tool. Tomorrow they will learn that good technology work needs not only tools, but also problem solving and clear breakdown of tasks.</div></div>
+  <div class="block-nav"><button class="nav-pill" onclick="showBlock('d9')">← Day 9</button><span class="progress-text">21 / 26</span><button class="nav-pill next orange-next" onclick="showBlock('d11')">Day 11 →</button></div>
+</section>
+ 
+<!-- ===== DAY 11 ===== -->
+<section class="block" id="block-d11">
+  <div class="block-tag tag-d11">Day 11 · Problem Solving · Full Session</div>
+  <h1 class="block-title">Problem Solving<br>Like a Builder</h1>
+  <p class="block-subtitle">Big problems become easier when broken into parts. This is the real skill under all technology.</p>
+  <div class="time-pill">⏱ Full Day Session</div>
+ 
+  <div class="hook-box orange-hook"><div class="hook-label" style="color:var(--orange);">The Core Skill 👇</div><p class="hook-text">"Until now we learned systems, sequence, conditions, data, structure, communication, internet, AI. But what is the real skill under all this? <strong style="color:var(--orange);">Problem solving.</strong>"</p></div>
+ 
+  <div class="script-box">
+    <div class="script-line">Technology is built because problems exist. So a strong learner must ask:</div>
+    <div class="script-line answer">What is the real problem here?</div>
+    <div class="script-line answer">What are its parts?</div>
+    <div class="script-line answer">Which part should I solve first?</div>
+  </div>
+ 
+  <div class="concept-card" style="border-color:rgba(255,107,43,0.3);margin:18px 0;">
+    <h3 style="color:var(--orange);">✏️ Live Example — Students Forget Homework Often</h3>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:10px;">
+      <div>
+        <div style="font-size:11px;color:var(--red);font-weight:600;text-transform:uppercase;margin-bottom:8px;">Why does it happen?</div>
+        <div style="font-size:13px;color:var(--muted);display:flex;flex-direction:column;gap:5px;"><span>• No reminder system</span><span>• No planner or habit</span><span>• Too many subjects</span><span>• No parent follow-up</span></div>
+      </div>
+      <div>
+        <div style="font-size:11px;color:var(--green);font-weight:600;text-transform:uppercase;margin-bottom:8px;">Possible solutions</div>
+        <div style="font-size:13px;color:var(--muted);display:flex;flex-direction:column;gap:5px;"><span>• Daily checklist on board</span><span>• Homework reminder app</span><span>• Class WhatsApp group reminder</span><span>• Simple progress board</span></div>
+      </div>
+    </div>
+    <p style="margin-top:12px;font-size:13px;color:var(--muted);">When the problem was one big block → it felt difficult. When broken into parts → it became workable.</p>
+  </div>
+ 
+  <div class="thought-bubble"><p>"No big product is built in one shot. It is broken into smaller tasks. If you say 'I want to build an app,' that is too big. Instead ask: <strong>What problem? Who is the user? What is the first feature? What should happen first?</strong> That is builder thinking."</p></div>
+ 
+  <div class="activity-box"><div class="activity-label">Activity — Break the Problem</div><div class="activity-q">Ask groups to choose one local problem and break it down completely.</div><div class="activity-hint">Options: water wastage in school, late school bus, homework confusion, messy classroom, long canteen queue. Each group answers: What is the problem? Why does it happen? What small solution can help right now?</div></div>
+ 
+  <div class="takeaway-box"><div class="takeaway-label">✅ Day 11 Key Takeaways</div><div class="takeaway-item">Big problems become easier when broken into parts</div><div class="takeaway-item">Builder mindset means asking better questions</div><div class="takeaway-item">Technology starts with problem clarity</div><div class="takeaway-item">Small solutions can solve large issues over time</div></div>
+ 
+  <div class="hw-box"><div class="hw-label">📌 Homework</div><div class="hw-item">Observe one problem in your home, school, or street. Write: what the problem is, why it happens, and one small solution idea</div></div>
+  <div class="connect-box"><div class="connect-label">→ How This Connects to Day 12</div><div class="connect-text">Today students learned problem breakdown. Tomorrow they will see that once a problem is broken into parts, a workflow can be created — step by step, from start to finish.</div></div>
+  <div class="block-nav"><button class="nav-pill" onclick="showBlock('d10')">← Day 10</button><span class="progress-text">22 / 26</span><button class="nav-pill next teal-next" onclick="showBlock('d12')">Day 12 →</button></div>
+</section>
+ 
+<!-- ===== DAY 12 ===== -->
+<section class="block" id="block-d12">
+  <div class="block-tag tag-d12">Day 12 · Workflow Thinking · Full Session</div>
+  <h1 class="block-title">How Work Moves<br>from Start to Finish</h1>
+  <p class="block-subtitle">Workflow means: from start to finish, what happens in order? Confusion usually happens between steps.</p>
+  <div class="time-pill">⏱ Full Day Session</div>
+ 
+  <div class="hook-box teal-hook"><div class="hook-label" style="color:var(--teal);">Building on Day 11 👇</div><p class="hook-text">"Yesterday we broke problems into parts. Today we <strong style="color:var(--teal);">connect those parts into a flow.</strong> This is called workflow thinking."</p></div>
+ 
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:20px 0;">
+    <div>
+      <div style="font-size:12px;color:var(--teal);font-weight:600;margin-bottom:10px;text-transform:uppercase;letter-spacing:0.08em;">Example 1 — Student Joining a Bootcamp</div>
+      <div class="wf-steps">
+        <div class="wf-step"><div class="wf-num" style="color:rgba(20,184,166,0.5);">1</div><div class="wf-body"><div class="wf-title">Student sees poster</div></div></div>
+        <div class="wf-step"><div class="wf-num" style="color:rgba(20,184,166,0.5);">2</div><div class="wf-body"><div class="wf-title">Student/parent asks details</div></div></div>
+        <div class="wf-step"><div class="wf-num" style="color:rgba(20,184,166,0.5);">3</div><div class="wf-body"><div class="wf-title">Registration form filled</div></div></div>
+        <div class="wf-step"><div class="wf-num" style="color:rgba(20,184,166,0.5);">4</div><div class="wf-body"><div class="wf-title">Payment done</div></div></div>
+        <div class="wf-step"><div class="wf-num" style="color:rgba(20,184,166,0.5);">5</div><div class="wf-body"><div class="wf-title">Confirmation sent</div></div></div>
+        <div class="wf-step"><div class="wf-num" style="color:rgba(20,184,166,0.5);">6</div><div class="wf-body"><div class="wf-title">Student added to batch</div></div></div>
+        <div class="wf-step"><div class="wf-num" style="color:rgba(20,184,166,0.5);">7</div><div class="wf-body"><div class="wf-title">Class starts</div></div></div>
+      </div>
+    </div>
+    <div>
+      <div style="font-size:12px;color:var(--teal);font-weight:600;margin-bottom:10px;text-transform:uppercase;letter-spacing:0.08em;">Example 2 — School Exam Result</div>
+      <div class="wf-steps">
+        <div class="wf-step"><div class="wf-num" style="color:rgba(20,184,166,0.5);">1</div><div class="wf-body"><div class="wf-title">Teacher enters marks</div></div></div>
+        <div class="wf-step"><div class="wf-num" style="color:rgba(20,184,166,0.5);">2</div><div class="wf-body"><div class="wf-title">Marks are verified</div></div></div>
+        <div class="wf-step"><div class="wf-num" style="color:rgba(20,184,166,0.5);">3</div><div class="wf-body"><div class="wf-title">System saves data</div></div></div>
+        <div class="wf-step"><div class="wf-num" style="color:rgba(20,184,166,0.5);">4</div><div class="wf-body"><div class="wf-title">Report card generated</div></div></div>
+        <div class="wf-step"><div class="wf-num" style="color:rgba(20,184,166,0.5);">5</div><div class="wf-body"><div class="wf-title">Student views result</div></div></div>
+      </div>
+    </div>
+  </div>
+ 
+  <div class="concept-card" style="border-color:rgba(20,184,166,0.3);margin:18px 0;"><h3 style="color:var(--teal);">⚠️ Where Workflow Breaks</h3><p>Registration happened but confirmation not sent. Payment done but name not added. Order placed but restaurant did not receive. <strong style="color:var(--white)">Strong companies reduce workflow breaks. Strong students also reduce workflow breaks in their own work.</strong></p></div>
+ 
+  <div class="thought-bubble" style="background:rgba(20,184,166,0.06);border-color:rgba(20,184,166,0.2);"><p style="color:var(--white);">"Without knowing it, you are already walking toward coding mindset. Input comes. System checks. Process happens. Output goes. Done. <strong style="color:var(--teal);">That is workflow. That is also code.</strong>"</p></div>
+ 
+  <div class="activity-box teal-act"><div class="activity-label teal-lbl">Activity — Draw a Flow</div><div class="activity-q">Ask students to draw arrows for one workflow using boxes on paper or a whiteboard.</div><div class="activity-hint">Options: ordering food → joining an online class → withdrawing cash from ATM → sending an email. Each box = one step. Arrows connect the steps. Where could it break? Mark those in red.</div></div>
+ 
+  <div class="takeaway-box"><div class="takeaway-label">✅ Day 12 Key Takeaways</div><div class="takeaway-item">Workflow means start-to-finish process with clear steps</div><div class="takeaway-item">Many real-world problems happen due to broken workflow</div><div class="takeaway-item">Smooth systems need clear flow</div><div class="takeaway-item">Workflow thinking strongly prepares the mind for programming</div></div>
+ 
+  <div class="hw-box"><div class="hw-label">📌 Homework</div><div class="hw-item">Write one workflow from your daily life in 6 to 8 steps — morning routine, getting ready for school, preparing for an exam, or anything that has a clear start and end</div></div>
+  <div class="connect-box"><div class="connect-label">→ How This Connects to Day 13</div><div class="connect-text">Students now understand systems, sequence, conditions, data, structure, problem solving, and workflows. Tomorrow they will finally see how all of this connects to coding and why Python is simply a language for giving such instructions to a computer.</div></div>
+  <div class="block-nav"><button class="nav-pill" onclick="showBlock('d11')">← Day 11</button><span class="progress-text">23 / 26</span><button class="nav-pill next green-next" onclick="showBlock('d13')">Day 13 →</button></div>
+</section>
+ 
+<!-- ===== DAY 13 ===== -->
+<section class="block" id="block-d13">
+  <div class="block-tag tag-d13">Day 13 · Bridge to Python · Full Session</div>
+  <h1 class="block-title">From Thinking to Coding:<br>Why Python Comes Next</h1>
+  <p class="block-subtitle">Python is not coming as a shock. Students have been preparing for it from Day 1.</p>
+  <div class="time-pill">⏱ Full Day Session</div>
+ 
+  <div class="hook-box green-hook"><div class="hook-label" style="color:var(--green);">The Big Reveal 👇</div><p class="hook-text">"Today is an important day. I want to tell you something clearly: <strong style="color:var(--green);">Python is not coming as a shock. You are already preparing for it from Day 1.</strong>"</p></div>
+ 
+  <div style="background:rgba(6,214,160,0.05);border:1px solid rgba(6,214,160,0.15);border-radius:14px;padding:20px 24px;margin:20px 0;">
+    <div style="font-family:'Syne',sans-serif;font-size:13px;font-weight:700;color:var(--green);margin-bottom:16px;">🗓️ What You Built — Day by Day</div>
+    <div style="display:grid;gap:8px;">
+      <div style="display:flex;gap:12px;padding:8px 12px;background:rgba(255,255,255,0.03);border-radius:8px;"><span style="font-family:'Syne',sans-serif;font-weight:700;font-size:12px;color:var(--cyan);min-width:50px;">Day 1</span><span style="font-size:13px;color:var(--muted);">You learned to ask <strong style="color:var(--white)">how things work</strong></span></div>
+      <div style="display:flex;gap:12px;padding:8px 12px;background:rgba(255,255,255,0.03);border-radius:8px;"><span style="font-family:'Syne',sans-serif;font-weight:700;font-size:12px;color:var(--orange);min-width:50px;">Day 2</span><span style="font-size:13px;color:var(--muted);">You learned how <strong style="color:var(--white)">companies solve problems</strong></span></div>
+      <div style="display:flex;gap:12px;padding:8px 12px;background:rgba(255,255,255,0.03);border-radius:8px;"><span style="font-family:'Syne',sans-serif;font-weight:700;font-size:12px;color:var(--purple);min-width:50px;">Day 3</span><span style="font-size:13px;color:var(--muted);">Apps are <strong style="color:var(--white)">systems</strong></span></div>
+      <div style="display:flex;gap:12px;padding:8px 12px;background:rgba(255,255,255,0.03);border-radius:8px;"><span style="font-family:'Syne',sans-serif;font-weight:700;font-size:12px;color:var(--teal);min-width:50px;">Day 4</span><span style="font-size:13px;color:var(--muted);">The power of <strong style="color:var(--white)">sequence</strong></span></div>
+      <div style="display:flex;gap:12px;padding:8px 12px;background:rgba(255,255,255,0.03);border-radius:8px;"><span style="font-family:'Syne',sans-serif;font-weight:700;font-size:12px;color:var(--green);min-width:50px;">Day 5</span><span style="font-size:13px;color:var(--muted);">Decision-making with <strong style="color:var(--white)">conditions</strong></span></div>
+      <div style="display:flex;gap:12px;padding:8px 12px;background:rgba(255,255,255,0.03);border-radius:8px;"><span style="font-family:'Syne',sans-serif;font-weight:700;font-size:12px;color:var(--yellow);min-width:50px;">Day 6</span><span style="font-size:13px;color:var(--muted);">What <strong style="color:var(--white)">data</strong> is and why it matters</span></div>
+      <div style="display:flex;gap:12px;padding:8px 12px;background:rgba(255,255,255,0.03);border-radius:8px;"><span style="font-family:'Syne',sans-serif;font-weight:700;font-size:12px;color:var(--pink);min-width:50px;">Day 7</span><span style="font-size:13px;color:var(--muted);">How to <strong style="color:var(--white)">structure</strong> information</span></div>
+      <div style="display:flex;gap:12px;padding:8px 12px;background:rgba(255,255,255,0.03);border-radius:8px;"><span style="font-family:'Syne',sans-serif;font-weight:700;font-size:12px;color:var(--cyan);min-width:50px;">Day 8</span><span style="font-size:13px;color:var(--muted);">How to <strong style="color:var(--white)">communicate</strong> ideas clearly</span></div>
+      <div style="display:flex;gap:12px;padding:8px 12px;background:rgba(255,255,255,0.03);border-radius:8px;"><span style="font-family:'Syne',sans-serif;font-weight:700;font-size:12px;color:var(--red);min-width:50px;">Day 9</span><span style="font-size:13px;color:var(--muted);">Smart and safe <strong style="color:var(--white)">internet usage</strong></span></div>
+      <div style="display:flex;gap:12px;padding:8px 12px;background:rgba(255,255,255,0.03);border-radius:8px;"><span style="font-family:'Syne',sans-serif;font-weight:700;font-size:12px;color:var(--purple);min-width:50px;">Day 10</span><span style="font-size:13px;color:var(--muted);">AI is a <strong style="color:var(--white)">tool</strong>, not magic</span></div>
+      <div style="display:flex;gap:12px;padding:8px 12px;background:rgba(255,255,255,0.03);border-radius:8px;"><span style="font-family:'Syne',sans-serif;font-weight:700;font-size:12px;color:var(--orange);min-width:50px;">Day 11</span><span style="font-size:13px;color:var(--muted);">Break big <strong style="color:var(--white)">problems</strong> into small parts</span></div>
+      <div style="display:flex;gap:12px;padding:8px 12px;background:rgba(255,255,255,0.03);border-radius:8px;"><span style="font-family:'Syne',sans-serif;font-weight:700;font-size:12px;color:var(--teal);min-width:50px;">Day 12</span><span style="font-size:13px;color:var(--muted);">Build clear <strong style="color:var(--white)">workflows</strong> start to finish</span></div>
+    </div>
+  </div>
+ 
+  <div class="script-box">
+    <div class="script-line question">Now tell me: What is coding?</div>
+    <div class="script-line emphasis">Coding is simply writing instructions for a computer in a language it can understand. That's all.</div>
+    <div class="script-line" style="margin-top:10px;">You already know the thinking. Now we are slowly moving toward the language.</div>
+    <div class="script-line" style="margin-top:10px;">Suppose I say: <em>"If student is present, mark attendance. If not, show absent."</em></div>
+    <div class="script-line answer">That is logic. In coding, the same idea is written in a formal way.</div>
+    <div class="script-line">Suppose I say: <em>"Take two numbers and add them."</em></div>
+    <div class="script-line answer">That is also instruction.</div>
+    <div class="script-line emphasis">So Python is not a monster. It is just a clean, beginner-friendly language that helps us convert our thinking into working steps.</div>
+  </div>
+ 
+  <div class="concept-card" style="border-color:rgba(6,214,160,0.3);margin:18px 0;"><h3 style="color:var(--green);">🐍 Why Python?</h3><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px;"><div style="font-size:13px;color:var(--muted);display:flex;gap:8px;"><span style="color:var(--green);">✓</span>Reads almost like English — easy to learn</div><div style="font-size:13px;color:var(--muted);display:flex;gap:8px;"><span style="color:var(--green);">✓</span>Used for AI, websites, games, automation</div><div style="font-size:13px;color:var(--muted);display:flex;gap:8px;"><span style="color:var(--green);">✓</span>Beginner-friendly — short, clean code</div><div style="font-size:13px;color:var(--muted);display:flex;gap:8px;"><span style="color:var(--green);">✓</span>Free and open source — anyone can start</div></div></div>
+ 
+  <div class="activity-box green-act"><div class="activity-label green-lbl">Activity — Human Logic to Computer Logic</div><div class="activity-q">Say normal statements and ask students to convert them into step logic. No Python syntax yet — only thinking.</div><div class="activity-hint">• "Ask name, then greet" → Step 1: Take name. Step 2: Print "Hello" + name.<br>• "Ask marks, then say pass/fail" → Step 1: Take marks. Step 2: If marks ≥ 35, print Pass. Else print Fail.<br>• "Ask age, then say child/teen/adult" → Step 1: Take age. Step 2: If age &lt; 12, child. If 12–18, teen. If 18+, adult.</div></div>
+ 
+  <div class="thought-bubble" style="background:rgba(6,214,160,0.06);border-color:rgba(6,214,160,0.2);"><p style="color:var(--white);">"People who jump into coding without thinking get confused quickly. You are not doing that. You are building foundation first. That is why your learning will be stronger. From next stage onward, when we start Python basics, I want you to feel: <strong style="color:var(--green);">'I already understand systems. I already understand steps. I already understand conditions. Now I am just learning how to write them in Python.'</strong> That is the correct mindset."</p></div>
+ 
+  <div class="takeaway-box"><div class="takeaway-label">✅ Day 13 Key Takeaways</div><div class="takeaway-item">Python is a natural next step, not a sudden jump</div><div class="takeaway-item">Coding is simply writing logic in a language a computer understands</div><div class="takeaway-item">The real foundation of coding is thinking — not syntax</div><div class="takeaway-item">Students are now mentally ready to begin Python basics</div></div>
+ 
+  <div class="hw-box"><div class="hw-label">📌 Homework</div><div class="hw-item">Write 3 simple instruction-based tasks in plain English: (1) how to greet a user, (2) how to check pass/fail, (3) how to add two numbers. These will be converted into Python in the next class.</div></div>
+ 
+  <div style="text-align:center;padding:32px;background:var(--card);border:1px solid var(--border);border-radius:16px;margin-top:28px;">
+    <div style="font-size:44px;margin-bottom:14px;">🎉</div>
+    <div style="font-family:'Syne',sans-serif;font-size:20px;font-weight:800;margin-bottom:10px;">Foundation Complete — Days 1 to 13</div>
+    <div style="color:var(--muted);font-size:13px;max-width:480px;margin:0 auto 24px;line-height:1.7;">Students have been built up from curious observers to system thinkers, ready to write their first Python programs with full mental clarity.</div>
+    <div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center;">
+      <div style="background:linear-gradient(135deg,var(--blue),var(--cyan));padding:9px 18px;border-radius:9px;font-family:'Syne',sans-serif;font-weight:700;font-size:12px;">Days 1–2 ✓ See the Hidden World</div>
+      <div style="background:linear-gradient(135deg,var(--purple),#7c3aed);padding:9px 18px;border-radius:9px;font-family:'Syne',sans-serif;font-weight:700;font-size:12px;">Days 3–5 ✓ Systems, Sequence, Logic</div>
+      <div style="background:linear-gradient(135deg,var(--yellow),var(--orange));padding:9px 18px;border-radius:9px;font-family:'Syne',sans-serif;font-weight:700;font-size:12px;">Days 6–8 ✓ Data, Structure, Communication</div>
+      <div style="background:linear-gradient(135deg,var(--red),var(--purple));padding:9px 18px;border-radius:9px;font-family:'Syne',sans-serif;font-weight:700;font-size:12px;">Days 9–10 ✓ Digital Maturity & AI</div>
+      <div style="background:linear-gradient(135deg,var(--teal),var(--green));padding:9px 18px;border-radius:9px;font-family:'Syne',sans-serif;font-weight:700;font-size:12px;">Days 11–13 ✓ Builder Mindset → Python Ready</div>
+    </div>
+    <div style="margin-top:20px;font-family:'Syne',sans-serif;font-weight:700;font-size:13px;color:var(--muted);">Hanominds Future Skills Bootcamp</div>
+  </div>
+  <div class="block-nav"><button class="nav-pill" onclick="showBlock('d12')">← Day 12</button><span class="progress-text">🎯 All 13 Days Complete!</span><div></div></div>
+</section>
+ 
 </main>
 </div>
-
+ 
 <script>
-const blockOrder = ['opening','iceberg','atm','internet','fiveq','computer','d1activity','company-intro','zomato','ola','uber','ceomind','d2activity'];
-
+// Day → first block mapping
+const dayFirstBlock = {
+  1:'opening', 2:'compintro', 3:'d3', 4:'d4', 5:'d5', 6:'d6',
+  7:'d7', 8:'d8', 9:'d9', 10:'d10', 11:'d11', 12:'d12', 13:'d13'
+};
+ 
 function showBlock(id) {
   document.querySelectorAll('.block').forEach(b => b.classList.remove('active'));
-  document.querySelectorAll('.sidebar-item').forEach(s => s.classList.remove('active'));
-  const b = document.getElementById('block-'+id);
-  if(b) { b.classList.add('active'); b.scrollIntoView({behavior:'smooth',block:'start'}); }
-  const n = document.getElementById('nav-'+id);
-  if(n) n.classList.add('active');
+  document.querySelectorAll('.sidebar-item').forEach(s => s.classList.remove('active','d2i','d3i','d4i','d5i','d6i','d7i','d8i','d9i','d10i','d11i','d12i','d13i'));
+  const b = document.getElementById('block-' + id);
+  if (b) { b.classList.add('active'); b.scrollIntoView({ behavior:'smooth', block:'start' }); }
+  const n = document.getElementById('nav-' + id);
+  if (n) {
+    n.classList.add('active');
+    const dayMap = { 'compintro':'d2i','zomato':'d2i','ola':'d2i','uber':'d2i','ceomind':'d2i','d2act':'d2i',
+      'd3':'d3i','d4':'d4i','d5':'d5i','d6':'d6i','d7':'d7i','d8':'d8i','d9':'d9i','d10':'d10i','d11':'d11i','d12':'d12i','d13':'d13i' };
+    if (dayMap[id]) n.classList.add(dayMap[id]);
+  }
+  // sync day tabs
+  const tabDay = id === 'opening'||id==='iceberg'||id==='atm'||id==='internet'||id==='fiveq'||id==='computer'||id==='d1act' ? 1
+    : id==='compintro'||id==='zomato'||id==='ola'||id==='uber'||id==='ceomind'||id==='d2act' ? 2
+    : id==='d3' ? 3 : id==='d4' ? 4 : id==='d5' ? 5 : id==='d6' ? 6 : id==='d7' ? 7 : id==='d8' ? 8
+    : id==='d9' ? 9 : id==='d10' ? 10 : id==='d11' ? 11 : id==='d12' ? 12 : 13;
+  setActiveTab(tabDay);
 }
-
-function switchDay(d) {
-  document.querySelectorAll('.day-tab').forEach((t,i) => t.classList.toggle('active', i===d-1));
+ 
+function gotoDay(d) {
+  showBlock(dayFirstBlock[d]);
 }
-
+ 
+function setActiveTab(d) {
+  document.querySelectorAll('.day-tab').forEach((t,i) => t.classList.toggle('active', i === d-1));
+}
+ 
 // ICEBERG
 let iceRevealed = false;
 function revealIceberg() {
@@ -1187,103 +1263,74 @@ function revealIceberg() {
   document.getElementById('ice-hidden').classList.toggle('show', iceRevealed);
   document.getElementById('ice-btn').textContent = iceRevealed ? '🙈 Hide the Backend' : '🔍 Reveal What\'s Below';
 }
-
-// EXAMPLE CARDS
-function toggleExample(card, title, items) {
+ 
+function toggleEx(card, items) {
   const rev = card.querySelector('.ex-reveal');
-  if(rev.style.display === 'none') {
+  if (rev.style.display === 'none') {
     rev.style.display = 'block';
-    rev.innerHTML = '<div style="font-size:11px; color:var(--cyan); font-weight:600; margin-bottom:6px;">WHAT\'S REALLY HAPPENING:</div>' +
-      items.map(i => `<div style="font-size:12px; color:var(--muted); padding:3px 0; display:flex; gap:6px;"><span style="color:var(--green);">✓</span>${i}</div>`).join('');
+    rev.innerHTML = '<div style="font-size:11px;color:var(--cyan);font-weight:600;margin-bottom:6px;">WHAT\'S REALLY HAPPENING:</div>' +
+      items.map(i => `<div style="font-size:12px;color:var(--muted);padding:3px 0;display:flex;gap:6px;"><span style="color:var(--green);">✓</span>${i}</div>`).join('');
     card.style.borderColor = 'rgba(0,212,255,0.3)';
-  } else {
-    rev.style.display = 'none';
-    card.style.borderColor = '';
-  }
+  } else { rev.style.display = 'none'; card.style.borderColor = ''; }
 }
-
-// ATM ANIMATION
+ 
+// ATM
 let atmRunning = false;
 function runATM() {
-  if(atmRunning) return;
+  if (atmRunning) return;
   atmRunning = true;
-  const btn = document.getElementById('atm-run-btn');
+  const btn = document.getElementById('atm-btn');
   btn.disabled = true;
-  btn.textContent = '⏳ Processing...';
-  for(let i=0;i<6;i++){
-    document.getElementById('as'+i).classList.remove('lit');
-    if(i<5) document.getElementById('aa'+i).classList.remove('lit');
-  }
-  document.getElementById('atm-bar').style.width='0%';
-  const steps = 6;
-  let current = 0;
-  const msgs = ['Reading card chip...','Connecting to your bank...','Verifying PIN (encrypted)...','Checking your balance...','Bank sends approval...','Cash motor activating!'];
+  for (let i=0;i<6;i++) { document.getElementById('as'+i).classList.remove('lit'); if(i<5) document.getElementById('aa'+i).classList.remove('lit'); }
+  document.getElementById('atm-bar').style.width = '0%';
+  const msgs = ['Reading card chip...','Connecting to your bank...','Verifying PIN...','Checking balance...','Bank sends approval...','Cash motor activating!'];
+  let cur = 0;
   function next() {
-    if(current >= steps) {
-      btn.disabled = false; btn.textContent = '▶ Run Again';
-      document.getElementById('atm-msg').innerHTML = 'All done! Total time: <strong style="color:var(--green)">2.8 seconds.</strong>';
-      atmRunning = false; return;
-    }
-    document.getElementById('as'+current).classList.add('lit');
-    if(current>0) document.getElementById('aa'+(current-1)).classList.add('lit');
-    document.getElementById('atm-bar').style.width = ((current+1)/steps*100)+'%';
-    btn.textContent = msgs[current];
-    current++; setTimeout(next, 600);
+    if (cur >= 6) { btn.disabled=false; btn.textContent='▶ Run Again'; document.getElementById('atm-msg').innerHTML='Total time: <strong style="color:var(--green)">2.8 seconds.</strong>'; atmRunning=false; return; }
+    document.getElementById('as'+cur).classList.add('lit');
+    if (cur>0) document.getElementById('aa'+(cur-1)).classList.add('lit');
+    document.getElementById('atm-bar').style.width=((cur+1)/6*100)+'%';
+    btn.textContent = msgs[cur]; cur++; setTimeout(next, 580);
   }
   next();
 }
-
-// PACKET ANIMATION
+ 
+// PACKET
 let packetMoving = false;
 function sendPacket() {
-  if(packetMoving) return;
+  if (packetMoving) return;
   packetMoving = true;
   const p = document.getElementById('packet1');
-  p.className = 'packet';
-  void p.offsetWidth;
+  p.className = 'packet'; void p.offsetWidth;
   p.className = 'packet moving';
   setTimeout(()=>{ p.className='packet'; packetMoving=false; }, 2200);
 }
-
-// ZOMATO WALKTHROUGH
-let zRunning = false, zStep = 0;
+ 
+// ZOMATO
+let zRunning=false, zStep=0;
 function runZomato() {
-  if(zRunning) return;
-  if(zStep >= 6) {
+  if (zRunning) return;
+  if (zStep >= 6) {
     for(let i=0;i<6;i++) document.getElementById('zs'+i).classList.remove('active-step');
-    zStep = 0;
-    document.getElementById('z-run-btn').textContent = '▶ Walk Through Order';
-    return;
+    zStep=0; document.getElementById('z-btn').textContent='▶ Walk Through Order'; return;
   }
-  zRunning = true;
-  document.getElementById('z-run-btn').disabled = true;
-  function stepThrough() {
-    if(zStep > 0) document.getElementById('zs'+(zStep-1)).classList.remove('active-step');
-    if(zStep >= 6) {
-      zRunning = false;
-      document.getElementById('z-run-btn').disabled = false;
-      document.getElementById('z-run-btn').textContent = '🔄 Restart';
-      return;
-    }
-    document.getElementById('zs'+zStep).classList.add('active-step');
-    zStep++;
-    setTimeout(() => { zRunning = false; document.getElementById('z-run-btn').disabled = false; }, 400);
-  }
-  stepThrough();
+  zRunning=true;
+  const btn=document.getElementById('z-btn'); btn.disabled=true;
+  if(zStep>0) document.getElementById('zs'+(zStep-1)).classList.remove('active-step');
+  document.getElementById('zs'+zStep).classList.add('active-step');
+  zStep++;
+  setTimeout(()=>{ zRunning=false; btn.disabled=false; if(zStep>=6) btn.textContent='🔄 Restart'; }, 400);
 }
-
+ 
 // TIMER
 let totalSecs = 7200;
 const timerEl = document.getElementById('timer');
-setInterval(() => {
-  if(totalSecs <= 0) return;
-  totalSecs--;
-  const h = Math.floor(totalSecs/3600);
-  const m = Math.floor((totalSecs%3600)/60);
-  const s = totalSecs%60;
-  timerEl.textContent = `⏱ ${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
-  if(totalSecs < 600) timerEl.style.color = '#ff4444';
-}, 1000);
+setInterval(()=>{
+  if(totalSecs<=0) return; totalSecs--;
+  const h=Math.floor(totalSecs/3600), m=Math.floor((totalSecs%3600)/60), s=totalSecs%60;
+  timerEl.textContent=`⏱ ${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+  if(totalSecs<600) timerEl.style.color='#ff4444';
+},1000);
 </script>
 </body>
 </html>
